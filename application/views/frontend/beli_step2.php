@@ -97,12 +97,18 @@
 												<div class="card-body">
 													<form action="<?php echo base_url() ?>tiket/cektiketmu" method="post">
 														<div class="form-group">
-															<label for="exampleInputEmail1">Pilih Bank </label>
-															<select class="form-control" name="bank" required>
+															<label for="exampleInputEmail1">Pilih Pembayaran </label>
+															<!-- <select class="form-control" name="bank" required>
 																<option value="" selected disabled="">Pilih Bank</option>
-																<?php foreach ($bank as $row) { ?>
-																<option value="<?php echo $row['kd_bank'] ?>"><?php echo $row['nama_bank']; ?></option>
-																<?php } ?>
+																<php foreach ($bank as $row) { ?>
+																<option value="<php echo $row['kd_bank'] ?>"><php echo $row['nama_bank']; ?></option>
+																<php } ?>
+															</select> -->
+															<select class="form-control" name="bank" required>
+																<option value="" selected disabled="">Pilih Pembayaran</option>
+																<option value="Lunas Agen">Lunas Agen</option>
+																<option value="Bayar Driver">Bayar Driver</option>
+																<option value="Transfer">Transfer</option>
 															</select>
 														</div>
 														<hr>

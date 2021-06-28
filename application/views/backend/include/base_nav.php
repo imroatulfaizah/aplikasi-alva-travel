@@ -34,10 +34,10 @@
           <span>Jadwal & Harga</span></a>
         <a class="nav-link" href="<?php echo base_url() ?>backend/rute">
           <i class="fas fa fa-compass"></i>
-          <span>Tujuan</span></a>
+          <span>Tujuan & Asal</span></a>
         <a class="nav-link" href="<?php echo base_url() ?>backend/bus">
           <i class="fas fa fa-bus"></i>
-          <span>Bus</span></a>
+          <span>Armada</span></a>
         <a class="nav-link" href="<?php echo base_url() ?>backend/driver">
           <i class="fas fa fa-users"></i>
           <span>Driver</span></a>

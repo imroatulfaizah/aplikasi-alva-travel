@@ -46,7 +46,7 @@
 									<li>► Jam keberangkatan <b>pukul <?php echo $jadwal['jam_berangkat_jadwal']; ?> WIB</b></li>
 									<li>► Jam Tiba <b>pukul <?php echo $jadwal['jam_tiba_jadwal']; ?> WIB</b></li>
 									<li>► Silahkan pilih kursi</li>
-									<li>► Pilih maksimal 4 kursi</li>
+									<li>► Pilih maksimal 10 kursi</li>
 								</ul>
 							</div>
 						</div>
@@ -214,7 +214,7 @@
 											function cer(elem){
 											if (elem.checked) {
 											count = count + 1;
-											if (count>4) {
+											if (count>10) {
 											count = 4;
 											swal("Maaf", "Maaf anda hanya boleh memilih 4 kursi !", "error");
 											elem.checked = false;

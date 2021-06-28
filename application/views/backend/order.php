@@ -32,6 +32,7 @@
                   <th>Nama Pemesan</th>
                   <th>Tanggal Beli</th>
                   <th>Jumlah Tiket</th>
+                  <th>Pembayaran</th>
                   <th>Status</th>
                   <th>Aksi</th>
                 </tr>
@@ -47,6 +48,7 @@
                     <td><?php echo $row['tgl_beli_order']; ?></td>
                     <?php $sqlcek = $this->db->query("SELECT * FROM tbl_order WHERE kd_order LIKE '".$row['kd_order']."'")->result_array(); ?>
                     <td><?php echo count($sqlcek); ?></td>
+                    <td><?php echo $row['kd_bank']; ?></td>
                     <?php if ($row['status_order'] == '1') { ?>
                           <td class="btn-danger"> Tunggu Konfirmasi</td> 
                           <?php } elseif($row['status_order'] == '2') { ?>

@@ -40,20 +40,32 @@
 										<input type="text" id="" class="form-control" id="" name="kd_order" value="<?php echo $id ?>" placeholder="Kode Tiket">
 									</div>
 									<div class="form-group">
-										<label for="exampleInputEmail1">BANK Kamu</label>
-										<select class="form-control" name="bank_km">
-											<option value="" selected disabled="">Pilih Bank</option>
-											<option value="BCA" >BCA</option>
+										<label for="exampleInputEmail1">Pembayaran Kamu</label>
+										<select class="form-control" name="bank_km" id="bank_km">
+											<option value="" selected disabled="">Pilih Pembayaran</option>
+											<!-- <option value="BCA" >BCA</option>
 											<option value="Mandiri">Mandiri</option>
 											<option value="BNI">BNI</option>
-											<option value="BRI">BRI</option>
+											<option value="BRI">BRI</option> -->
+											<option value="Lunas Agen">Lunas Agen</option>
+											<option value="Bayar Driver">Bayar Driver</option>
+											<option value="Transfer">Transfer</option>
 										</select>
 									</div>
-									<div class="form-group">
+									<div class="form-group" id="id_agen" style="display:none;">
+										<label for="exampleInputEmail1">Agen</label>
+										<select class="form-control" name="agen" required>
+											<option value="" selected disabled="">Pilih Agen</option>
+											<?php foreach ($agen as $row) { ?>
+											<option value="<?php echo $row['kd_agen'] ?>"><?php echo $row['nama_agen']; ?></option>
+											<?php } ?>
+										</select>
+									</div>
+									<div class="form-group" id="id_norek" style="display:none;">
 										<label for="exampleInputEmail1">Nomor Rekening</label>
 										<input type="number" class="form-control" name="nomrek" value="" placeholder="Nomor Rekening">
 									</div>
-									<div class="form-group">
+									<div class="form-group" id="id_pengirim" style="display:none;">
 										<label for="exampleInputEmail1">Nama Pengirim</label>
 										<input type="text" class="form-control" name="nama" value="" placeholder="Nama Pengirim">
 									</div>
@@ -78,3 +90,25 @@
 			<?php $this->load->view('frontend/include/base_js'); ?>
 		</body>
 	</html>
+
+	<!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> -->
+    <script type='text/javascript'>
+	$("#bank_km").change(function () {
+                if ($("#bank_km").val() === "Lunas Agen") {
+                    $("#id_norek").hide();
+					$("#id_pengirim").hide();
+					$("#id_agen").show();
+                    //$("#expired").attr('required', false);
+
+                } else if ($("#bank_km").val() === "Bayar Driver") {
+					$("#id_norek").hide();
+					$("#id_pengirim").hide();
+					$("#id_agen").hide();
+                } else {
+					console.log("3");
+                    $("#id_norek").show();
+					$("#id_pengirim").show();
+					$("#id_agen").hide();
+                }
+            });
+	</script>
