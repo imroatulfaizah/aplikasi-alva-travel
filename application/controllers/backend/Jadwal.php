@@ -50,6 +50,7 @@ class Jadwal extends CI_Controller {
 					'kd_tujuan' => $tujuan['kd_tujuan'],
 					'kd_bus' => $this->input->post('bus'),
 					'wilayah_jadwal' => $tujuan['kota_tujuan'],
+					'tanggal' => $this->input->post('tanggal'),
 					'jam_berangkat_jadwal' => $this->input->post('berangkat'),
 					'jam_tiba_jadwal' => $this->input->post('tiba'),
 					'harga_jadwal' =>  $this->input->post('harga'),

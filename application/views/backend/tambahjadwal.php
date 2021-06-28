@@ -48,7 +48,7 @@
                   <div class="form-group">
                     <label  class="">Bus</label>
                     <select class="form-control" name="bus">
-                      <option value="" selected disabled="">-Pilih Bus-</option>
+                      <option value="" selected disabled="">-Pilih Armada-</option>
                       <?php foreach ($bus as $row ) {?>
                       <option value="<?php echo $row['kd_bus'] ?>" ><?php echo strtoupper($row['nama_bus']); ?> -<?php if ($row['status_bus'] == '1') { ?>
                         Online
@@ -57,6 +57,15 @@
                       <?php } ?>- </option>
                       <?php } ?>
                     </select>
+                  </div>
+                  <div class="form-group">
+                      <label class="" > Tanggal</label>
+                          <div class='input-group date' id='datepicker' >
+                              <input type='text' name="tanggal" class="form-control datepicker" value="" placeholder="Tanggal..." required/>
+                              <span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-calendar"></span>
+                              </span>
+                          </div>
                   </div>
                   <div class="form-group">
                     <label  class="">Jam Berangkat</label>
@@ -114,6 +123,17 @@
             });
           })
         </script>
+        <script type="text/javascript">
+             $(function(){
+                var date = new Date();
+                date.setDate(date.getDate());
+
+              $(".datepicker").datepicker({
+                  format: 'yyyy-mm-dd',
+                  autoclose: true,
+              });
+             });
+            </script>
 
       </body>
     </html>

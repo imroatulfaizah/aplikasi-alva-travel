@@ -32,6 +32,7 @@
                   <th>Kode Jadwal</th>
                   <th>Kota Asal</th>
                   <th>Kota Tujuan</th>
+                  <th>Tanggal Keberangkatan</th>
                   <th>Jam Berangkat</th>
                   <th>Jam Sampai</th>
                   <th>Harga</th>
@@ -45,6 +46,7 @@
                   <td><?php echo $row['kd_jadwal']; ?></td>
                   <td><?php echo strtoupper($row['kota_tujuan']); ?></td>
                   <td><?php echo strtoupper($row['wilayah_jadwal']); ?></td>
+                  <td><?php echo strtoupper($row['tanggal']); ?></td>
                   <td><?php echo date('H:i',strtotime($row['jam_berangkat_jadwal'])); ?></td>
                   <td><?php echo date('H:i',strtotime($row['jam_tiba_jadwal'])); ?></td>
                   <td>Rp <?php echo number_format((float)($row['harga_jadwal']),0,",","."); ?>,-</td>
