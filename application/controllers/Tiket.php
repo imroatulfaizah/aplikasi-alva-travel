@@ -29,15 +29,18 @@ class Tiket extends CI_Controller {
 		$this->load->view('frontend/cektiket');
 	}
 	public function cekjadwal($tgl='' , $asl='', $tjn=''){
+
 		$this->session->unset_userdata(array('jadwal','asal','tanggal'));
 		$data['title'] = 'Cari TIket';
 		$data['tanggal'] = $this->input->get('tanggal').$tgl;
 		$asal = $this->input->get('asal').$asl;
 		$tujuan = $this->input->get('tujuan').$tjn;
+		$tanggal = $this->input->get('tanggal').$tgl;
 		$data['asal'] = $this->db->query("SELECT * FROM tbl_tujuan
                WHERE kd_tujuan ='".$asal."'")->row_array();
-		$data['jadwal'] = $this->db->query("SELECT * FROM tbl_jadwal LEFT JOIN tbl_bus on tbl_jadwal.kd_bus = tbl_bus.kd_bus LEFT JOIN tbl_tujuan on tbl_jadwal.kd_tujuan = tbl_tujuan.kd_tujuan WHERE tbl_jadwal.wilayah_jadwal ='".$tujuan."' AND tbl_jadwal.kd_asal = '".$asal."'")->result_array();
-		// die(print_r($data));
+		$data['jadwal'] = $this->db->query("SELECT * FROM tbl_jadwal LEFT JOIN tbl_bus on tbl_jadwal.kd_bus = tbl_bus.kd_bus LEFT JOIN tbl_tujuan on tbl_jadwal.kd_tujuan = tbl_tujuan.kd_tujuan WHERE tbl_jadwal.wilayah_jadwal ='".$tujuan."' AND tbl_jadwal.kd_asal = '".$asal."' AND tbl_jadwal.tanggal ='".$tanggal."'")->result_array();
+		//  var_dump("SELECT * FROM tbl_jadwal LEFT JOIN tbl_bus on tbl_jadwal.kd_bus = tbl_bus.kd_bus LEFT JOIN tbl_tujuan on tbl_jadwal.kd_tujuan = tbl_tujuan.kd_tujuan WHERE tbl_jadwal.wilayah_jadwal ='".$tujuan."' AND tbl_jadwal.kd_asal = '".$asal."' AND tbl_jadwal.tanggal ='".$tanggal."'");
+		//  die();
 		if (!empty($data['jadwal'])) {
 			if ($tujuan == $data['asal']['kota_tujuan']) {
 				$this->session->set_flashdata('message', 'swal("Cek", "Tujuan dan Asal tidak boleh sama", "error");');
