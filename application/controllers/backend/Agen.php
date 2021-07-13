@@ -9,13 +9,14 @@ class agen extends CI_Controller {
 	}
 	public function index(){
 	$data['title'] = "List Agen";
-	$data['agen'] = $this->db->query("SELECT * FROM tbl_agen ORDER BY nama_agen asc")->result_array();
+	$data['agen'] = $this->db->query("SELECT * FROM tbl_agens ORDER BY nama_agen asc")->result_array();
 	// die(print_r($data));
 	$this->load->view('backend/agen', $data);	
 	}
+	
 	public function viewagen($id=''){
 		$data['title'] = "View Agen";
-		$data['agen'] = $this->db->query("SELECT * FROM tbl_agen WHERE kd_agen = '".$id."'")->row_array();
+		$data['agen'] = $this->db->query("SELECT * FROM tbl_agens WHERE kd_agen = '".$id."'")->row_array();
 		// die(print_r($data));
 		$this->load->view('backend/view_agen', $data);
 	}
@@ -23,12 +24,18 @@ class agen extends CI_Controller {
 		$kode = $this->getkod_model->get_kodagen();
 		$data = array(
 			'kd_agen' => $kode,
+			'username_agen' => $this->input->post('username_agen'),
+			'password_agen' => $this->input->post('password_agen'),
+			'no_ktp_agen' => $this->input->post('no_ktp_agen'),
 			'nama_agen' => $this->input->post('nama_agen'),
-			'alamat_agen'		 => $this->input->post('alamat_agen'),
-			'hp_agen'		 => $this->input->post('hp_agen'),
-			'status_agen'			=> '1'
+			'alamat_agen' => $this->input->post('alamat_agen'),
+			'email_agen' => $this->input->post('email_agen'),
+			'hp_agen' => $this->input->post('hp_agen'),
+			'img_agen'		 => $this->input->post('img_agen'),
+			'status_agen'		 => '1',
+			'date_create_agen'	=> $this->input->post('date_create_agen')
 			 );
-		$this->db->insert('tbl_agen', $data);
+		$this->db->insert('tbl_agens', $data);
 		$this->session->set_flashdata('message', 'swal("Berhasil", "Data agen Di Simpan", "success");');
 		redirect('backend/agen');
 	}

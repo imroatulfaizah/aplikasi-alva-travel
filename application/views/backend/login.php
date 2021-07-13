@@ -50,7 +50,8 @@
                       Login
                     </button>
                   </form>
-                  <hr>            
+                  <hr> 
+                  
                 </div>
               </div>
             </div>

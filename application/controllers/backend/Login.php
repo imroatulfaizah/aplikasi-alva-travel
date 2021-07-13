@@ -46,6 +46,53 @@ class Login extends CI_Controller {
 		// die(print_r($data));
 		$this->load->view('backend/login',$data);
 	}
+
+    public function register(){
+		$this->form_validation->set_rules('nomor', 'Nomor', 'trim|required|is_unique[tbl_pelanggan.telpon_pelanggan]',array(
+			'required' => 'Nomor HP Wajib Di isi.',
+			'is_unique' => 'Nomor Sudah Di Gunakan.'
+			 ));
+		$this->form_validation->set_rules('name', 'Name', 'trim|required',array(
+			'required' => 'Nama Wajib Di isi.',
+			 ));
+		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|is_unique[tbl_pelanggan.username_pelanggan]',array(
+			'required' => 'Username Wajib Di isi.',
+			'is_unique' => 'Username Sudah Di Gunakan.'
+			 ));
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[tbl_pelanggan.email_pelanggan]',array(
+			'required' => 'Email Wajib Di isi.',
+			'valid_email' => 'Masukan Email Dengan Benar',
+			'is_unique' => 'Email Sudah Di Gunakan.'
+			 ));
+		$this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[8]|matches[password2]',array(
+			'matches' => 'Password Tidak Sama.',
+			'min_length' => 'Password Minimal 8 Karakter.'
+			 ));
+		$this->form_validation->set_rules('password2', 'Password', 'trim|required|matches[password1]');
+		if ($this->form_validation->run() == false) {
+			$this->load->view('backend/register');
+		} else {
+			$this->load->model('getkod_model');
+			$data = array(
+			'kd_agen'	=> $this->getkod_model->get_kodagen(),
+			'nama_agen'  => $this->input->post('name'),
+			'email_agen'	    	=> $this->input->post('email'),
+			'img_agen'		=> 'assets/frontend/img/default.png',
+			'alamat_agen'		=> $this->input->post('alamat'),
+			'hp_agen'		=> $this->input->post('nomor'),
+			'username_agen'		=> $this->input->post('username'),
+			'status_agen' => 1,
+			'date_create_agen' => time(),
+			'password_agen'		=> password_hash($this->input->post('password1'),PASSWORD_DEFAULT)
+			);
+			$this->db->insert('tbl_agens', $data);
+			$this->session->set_flashdata('message', 'swal("Berhasil", "Pendaftaran Berhasil! Silahkan login kembali.", "success");');
+    		redirect('login');
+		}
+
+	}
+
 	public function logout(){
 		$this->session->sess_destroy();
 		redirect(base_url('backend/login'));

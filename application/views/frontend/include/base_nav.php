@@ -17,7 +17,13 @@
 						</ul>
 						</li>
 				      <?php }else{ ?>  
-				  	  <li class="menu wobble animated"><a href="<?php echo base_url() ?>login/Daftar">Daftar</a></li>
+						<li class="menu-has-children"><a>Daftar</a>
+						<ul>
+							<li><a href="<?php echo base_url() ?>login/register/"><i class="fa fa-id-card"></i> Daftar Agen</a></li>
+							<li class="menu wobble animated"><a href="<?php echo base_url() ?>login/Daftar"><i class="fa fa-id-card"></i>Daftar Customer</a></li>
+						</ul>
+						</li>
+				  	  
  					  <li><a href="<?php echo base_url() ?>login">Login</a></li>
 				  	  <?php } ?>
 			        </ul>
