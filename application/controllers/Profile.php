@@ -10,16 +10,22 @@ class Profile extends CI_Controller {
 		$this->load->view('frontend/profile');
 	}
 	public function profilesaya($id=''){
-
-		$data['profile'] = $this->db->query("SELECT * FROM tbl_pelanggan WHERE kd_pelanggan LIKE '".$id."'")->row_array();
+		$data['cek'] = $this->db->query("SELECT * FROM tbl_pelanggan where kd_pelanggan ='".$id."'")->row_array();
+		if($data['cek'] != null){
+			$data['profile'] = $this->db->query("SELECT * FROM tbl_pelanggan WHERE kd_pelanggan LIKE '".$id."'")->row_array();
+		}else{
+			$data['profile'] = $this->db->query("SELECT * FROM tbl_agens WHERE kd_agen LIKE '".$id."'")->row_array();
+		}
+		
 		// die(print_r($data));
 		$this->load->view('frontend/profile',$data);
 	}
 	public function editprofile($id=''){
 		$id = $this->input->post('kode');
-		var_dump($id);
-		die();
-		$where = array('kd_pelanggan' => $id );
+		$data['cek'] = $this->db->query("SELECT * FROM tbl_pelanggan where kd_pelanggan ='".$id."'")->row_array();
+		
+		if($data['cek'] != null){
+			$where = array('kd_pelanggan' => $id );
 		$update = array(
 			'no_ktp_pelanggan'			=> $this->input->post('ktp'),
 			'nama_pelanggan'  => $this->input->post('nama'),
@@ -29,6 +35,18 @@ class Profile extends CI_Controller {
 			'telpon_pelanggan'		=> $this->input->post('hp'),
 			 );
 		$this->db->update('tbl_pelanggan', $update,$where);
+		}else{
+			$where = array('kd_agen' => $id );
+		$update = array(
+			'no_ktp_agen'			=> $this->input->post('ktp'),
+			'nama_agen'  => $this->input->post('nama'),
+			'email_agen'	    	=> $this->input->post('email'),
+			'img_agen'		=> 'assets/frontend/img/default.png',
+			'alamat_agen'		=> $this->input->post('alamat'),
+			'hp_agen'		=> $this->input->post('hp'),
+			 );
+		$this->db->update('tbl_agens', $update,$where);
+		}
 		$this->session->set_flashdata('message', 'swal("Berhasil", "Data Di Edit", "success");');
 		redirect('profile/profilesaya/'.$id);
 	}

@@ -34,7 +34,95 @@
 		<!-- navbar -->
 		<?php $this->load->view('frontend/include/base_nav'); ?>
 		<section class="generic-banner relative">
-			<div class="container">
+			<?php if($cek == null){ ?>
+				<div class="container">
+				<div class="section-top-border">
+					<h3 class="mb-30" align="center">Profile Saya</h3>
+					<div class="row d-flex justify-content-center">
+						<div class="col-lg-6">
+							<!-- Default Card Example -->
+							<div class="card" align="left">
+								<div class="card-header">
+									<i class="fa fa-user"></i> Data Akun
+								</div>
+								<div class="card-body" align="left">
+									<div class="row">
+										<div class="col-sm-8">
+											<h5 class="card-title">Nomor KTP</h5>
+											<p class="card-text"><?php echo $profile['no_ktp_agen'] ?></p>
+											<h5 class="card-title">Nama</h5>
+											<p class="card-text"><?php echo $profile['nama_agen'] ?></p>
+											<h5 class="card-title">Email</h5>
+											<p class="card-text"><?php echo $profile['email_agen']?></p>
+											<h5 class="card-title">Nomor HP</h5>
+											<p class="card-text"><?php echo $profile['hp_agen'] ?></p>
+										</div>
+										<div class="col-sm-14">
+											<h5 class="card-title">Alamat</h5>
+											<p class="card-text"><?php echo $profile['alamat_agen']?></p>
+											<h5 class="card-title">Photo Profile</h5>
+											<p><img src="<?php echo base_url($profile['img_agen'])?>" height="50" width="50" ></p>
+											<p><a href="<?php echo base_url('profile/changepassword/'.$profile['kd_agen']) ?>" class="btn btn-primary">Ganti Password</a></p>
+											<p><button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">Edit Akun</button></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form action="<?php echo base_url('profile/editprofile') ?>" method="post" enctype="multipart/form-data">
+									<div class="card-body">
+										<div class="row">
+											<div class="col-sm-14">
+												<div class="row form-group">
+													<label for="nama" class="control-label">Nomor KTP</label>
+													<input type="text" class="form-control" name="ktp" value="<?php echo $profile['no_ktp_agen']?>" >
+													<input type="hidden" name="kode" value="<?php echo $profile['kd_agen']?>">
+												</div>
+												<div class="row form-group">
+													<label for="nama" class="control-label">Nama</label>
+													<input type="text" class="form-control" name="nama" value="<?php echo $profile['nama_agen']?>" >
+												</div>
+												<div class="row form-group">
+													<label for="nama" class="control-label">Email</label>
+													<input type="email" class="form-control" name="email" value="<?php echo $profile['email_agen']?>" >
+												</div>
+												<div class="row form-group">
+													<label for="nama" class="control-label">Nomor HP</label>
+													<input type="text" class="form-control" name="hp" value="<?php echo $profile['hp_agen']?>" >
+												</div>
+												<div class="row form-group">
+													<label for="nama" class="control-label">Alamat</label>
+													<input type="text" class="form-control" name="alamat" value="<?php echo $profile['alamat_agen']?>" >
+												</div>
+												<div class="row form-group">
+													<label for="" class="control-label">Photo Profile</label>
+													<img src="<?php echo base_url($profile['img_agen'])?>" alt="<?php echo $this->session->userdata('ktp') ?>" style="width:150px;height:150px"><input type="file" class="form-control" value="<?php echo base_url($this->session->userdata('nama_lengkap')) ?>" name="img"  >
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+									<button class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="submit" class="btn btn-primary" >Simpan Perubahan</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			<?php }else{ ?>
+
+				<div class="container">
 				<div class="section-top-border">
 					<h3 class="mb-30" align="center">Profile Saya</h3>
 					<div class="row d-flex justify-content-center">
@@ -119,6 +207,8 @@
 						</div>
 					</div>
 				</div>
+
+			<?php } ?>
 				<?php $this->load->view('frontend/include/base_footer'); ?>
 				<!-- js -->
 				<?php $this->load->view('frontend/include/base_js'); ?>
