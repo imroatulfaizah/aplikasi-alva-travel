@@ -35,6 +35,25 @@ class Profile extends CI_Controller {
 		// die(print_r($data));
 		$this->load->view('frontend/tiketmu',$data);
 	}
+
+	public function caritiketsaya($tanggal=''){
+		$this->getsecurity();
+		$tanggal = $_GET['tanggal'];
+		$sqlcek = $this->db->query("SELECT * FROM tbl_order WHERE tgl_berangkat_order ='".$tanggal."' group by kd_order")->result_array();
+	
+		if ($sqlcek != null) {
+		
+		$data['tiket'] = $sqlcek;
+		
+		// var_dump($data);
+		// die();
+		$this->load->view('frontend/tiketmu',$data);
+		}else{
+			$this->session->set_flashdata('message', 'swal("Kosong", "Tiket Order Tidak Ada", "error");');
+    		redirect('frontend/tiketmu');
+		}
+	}
+
 	public function changepassword($id=''){
 		$this->load->library('form_validation');
 		$pelanggan = $this->db->query("SELECT password_pelanggan FROM tbl_pelanggan where kd_pelanggan ='".$id."'")->row_array();

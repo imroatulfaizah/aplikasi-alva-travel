@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 14, 2021 at 07:28 PM
+-- Generation Time: Jul 05, 2021 at 09:57 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -62,7 +62,8 @@ CREATE TABLE IF NOT EXISTS `tbl_agen` (
   `nama_agen` varchar(150) NOT NULL,
   `alamat_agen` varchar(200) NOT NULL,
   `hp_agen` varchar(50) NOT NULL,
-  `status_agen` int(1) NOT NULL
+  `status_agen` int(1) NOT NULL,
+  PRIMARY KEY (`kd_agen`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -70,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `tbl_agen` (
 --
 
 INSERT INTO `tbl_agen` (`kd_agen`, `nama_agen`, `alamat_agen`, `hp_agen`, `status_agen`) VALUES
-('AG001', 'agen', 'tes', 'tes', 1);
+('AG001', 'Ahmad Saifuddin', 'Jl. Simpang Jogja No. 48', '085735626777', 1);
 
 -- --------------------------------------------------------
 
@@ -157,6 +158,7 @@ CREATE TABLE IF NOT EXISTS `tbl_jadwal` (
   `kd_tujuan` varchar(50) DEFAULT NULL,
   `kd_asal` varchar(50) DEFAULT NULL,
   `wilayah_jadwal` varchar(50) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
   `jam_berangkat_jadwal` time DEFAULT NULL,
   `jam_tiba_jadwal` time DEFAULT NULL,
   `harga_jadwal` varchar(50) NOT NULL,
@@ -169,8 +171,11 @@ CREATE TABLE IF NOT EXISTS `tbl_jadwal` (
 -- Dumping data for table `tbl_jadwal`
 --
 
-INSERT INTO `tbl_jadwal` (`kd_jadwal`, `kd_bus`, `kd_tujuan`, `kd_asal`, `wilayah_jadwal`, `jam_berangkat_jadwal`, `jam_tiba_jadwal`, `harga_jadwal`) VALUES
-('J0001', 'B001', 'TJ001', 'TJ002', 'Jogja', '18:56:00', '18:56:00', '130000');
+INSERT INTO `tbl_jadwal` (`kd_jadwal`, `kd_bus`, `kd_tujuan`, `kd_asal`, `wilayah_jadwal`, `tanggal`, `jam_berangkat_jadwal`, `jam_tiba_jadwal`, `harga_jadwal`) VALUES
+('J0001', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-07-28', '18:56:00', '18:56:00', '130000'),
+('J0002', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-07-06', '07:01:00', '01:01:00', '200000'),
+('J0003', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-07-03', '01:06:00', '20:07:00', '200000'),
+('J0004', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-06-30', '01:08:00', '17:08:00', '200000');
 
 -- --------------------------------------------------------
 
@@ -196,7 +201,18 @@ CREATE TABLE IF NOT EXISTS `tbl_konfirmasi` (
 --
 
 INSERT INTO `tbl_konfirmasi` (`kd_konfirmasi`, `kd_order`, `nama_konfirmasi`, `nama_bank_konfirmasi`, `norek_konfirmasi`, `total_konfirmasi`, `photo_konfirmasi`) VALUES
-('KF0001', 'ORD00001', 'Devi Kharisma', 'BCA', '123', '130000', '/assets/frontend/upload/payment/bingkai_(2).png');
+('KF0001', 'ORD00001', 'Devi Kharisma', 'BCA', '123', '130000', '/assets/frontend/upload/payment/bingkai_(2).png'),
+('KF0002', 'ORD00004', 'Ahmad', 'Mandiri', '432432432', '260000', '/assets/frontend/upload/payment/start2.jpg'),
+('KF0003', 'ORD00005', 'test', 'BCA', '322423', '200000', '/assets/frontend/upload/payment/start21.jpg'),
+('KF0004', 'ORD00005', '', 'Lunas Agen', '', '200000', '/assets/frontend/upload/payment/start22.jpg'),
+('KF0005', 'ORD00006', '', 'Lunas Agen', '', '130000', '/assets/frontend/upload/payment/start23.jpg'),
+('KF0006', 'ORD00007', '', 'Lunas Agen', '', '130000', '/assets/frontend/upload/payment/start24.jpg'),
+('KF0007', 'ORD00007', '', 'Lunas Agen', '', '130000', '/assets/frontend/upload/payment/start25.jpg'),
+('KF0008', 'ORD00007', '', 'Lunas Agen', '', '130000', '/assets/frontend/upload/payment/start26.jpg'),
+('KF0009', 'ORD00007', '', 'Lunas Agen', '', '130000', '/assets/frontend/upload/payment/start27.jpg'),
+('KF0010', 'ORD00007', '', 'Lunas Agen', '', '130000', '/assets/frontend/upload/payment/start28.jpg'),
+('KF0011', 'ORD00007', '', 'Lunas Agen', '', '130000', '/assets/frontend/upload/payment/start29.jpg'),
+('KF0012', 'ORD00010', '', 'Lunas Agen', '', '130000', '/assets/frontend/upload/payment/5.jpg');
 
 -- --------------------------------------------------------
 
@@ -254,6 +270,7 @@ CREATE TABLE IF NOT EXISTS `tbl_order` (
   `kd_jadwal` varchar(50) DEFAULT NULL,
   `kd_pelanggan` varchar(50) DEFAULT NULL,
   `kd_bank` varchar(50) DEFAULT NULL,
+  `kd_agen` varchar(15) NOT NULL,
   `asal_order` varchar(200) DEFAULT NULL,
   `nama_order` varchar(50) DEFAULT NULL,
   `tgl_beli_order` varchar(50) DEFAULT NULL,
@@ -273,16 +290,22 @@ CREATE TABLE IF NOT EXISTS `tbl_order` (
   KEY `kd_kustomer` (`kd_pelanggan`),
   KEY `kd_tiket` (`kd_tiket`),
   KEY `kd_bank` (`kd_bank`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_order`
 --
 
-INSERT INTO `tbl_order` (`id_order`, `kd_order`, `kd_tiket`, `kd_jadwal`, `kd_pelanggan`, `kd_bank`, `asal_order`, `nama_order`, `tgl_beli_order`, `tgl_berangkat_order`, `nama_kursi_order`, `umur_kursi_order`, `no_kursi_order`, `no_ktp_order`, `no_tlpn_order`, `alamat_order`, `email_order`, `expired_order`, `qrcode_order`, `status_order`) VALUES
-(1, 'ORD00001', 'T0001202106147', 'J0001', 'PL0001', 'BNK0001', 'TJ002', 'Devi Kharisma', 'Senin, 14 Juni 2021, 19:07', '2021-06-14', 'Devi Karisma', '21', '7', '35080720988228', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '15-06-2021 19:07:48', 'assets/frontend/upload/qrcode/ORD00001.png', '2'),
-(2, 'ORD00002', 'T0002202106143', 'J0001', 'PL0001', 'BNK0001', 'TJ002', 'Devi Kharisma', 'Senin, 14 Juni 2021, 19:21', '2021-06-14', 'Devi A', '88', '3', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '15-06-2021 19:21:46', 'assets/frontend/upload/qrcode/ORD00002.png', '1'),
-(3, 'ORD00002', 'T0002202106146', 'J0001', 'PL0001', 'BNK0001', 'TJ002', 'Devi Kharisma', 'Senin, 14 Juni 2021, 19:21', '2021-06-14', 'Devi B', '87', '6', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '15-06-2021 19:21:46', 'assets/frontend/upload/qrcode/ORD00002.png', '1');
+INSERT INTO `tbl_order` (`id_order`, `kd_order`, `kd_tiket`, `kd_jadwal`, `kd_pelanggan`, `kd_bank`, `kd_agen`, `asal_order`, `nama_order`, `tgl_beli_order`, `tgl_berangkat_order`, `nama_kursi_order`, `umur_kursi_order`, `no_kursi_order`, `no_ktp_order`, `no_tlpn_order`, `alamat_order`, `email_order`, `expired_order`, `qrcode_order`, `status_order`) VALUES
+(7, 'ORD00005', 'T0005202106281', 'J0002', 'PL0001', 'Lunas Agen', '', 'TJ002', 'Devi Kharisma', 'Senin, 28 Juni 2021, 23:47', '2021-06-28', 'Devi A', '86', '1', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '29-06-2021 23:47:27', 'assets/frontend/upload/qrcode/ORD00005.png', '2'),
+(8, 'ORD00006', 'T0006202106291', 'J0001', 'PL0001', 'Bayar Driver', '', 'TJ002', 'Devi Kharisma', 'Selasa, 29 Juni 2021, 00:29', '2021-06-29', 'Devi Kharisma', '25', '1', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '30-06-2021 00:29:59', 'assets/frontend/upload/qrcode/ORD00006.png', '1'),
+(9, 'ORD00007', 'T0007202106293', 'J0001', 'PL0001', 'Lunas Agen', 'AG001', 'TJ002', 'Devi Kharisma', 'Selasa, 29 Juni 2021, 00:42', '2021-06-29', 'Devi A', '86', '3', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '30-06-2021 00:42:18', 'assets/frontend/upload/qrcode/ORD00007.png', '1'),
+(10, 'ORD00008', 'T0008202107021', 'J0001', 'PL0001', 'Transfer', '', 'TJ002', 'Devi Kharisma', 'Jumat, 02 Juli 2021, 00:12', '2021-07-02', 'Devi Kharisma', '21', '1', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '03-07-2021 00:12:40', 'assets/frontend/upload/qrcode/ORD00008.png', '1'),
+(11, 'ORD00009', 'T0009202107031', 'J0001', 'PL0001', 'Lunas Agen', '', 'TJ002', 'Devi Kharisma', 'Sabtu, 03 Juli 2021, 13:42', '2021-07-03', 'A', '89', '1', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '04-07-2021 13:42:52', 'assets/frontend/upload/qrcode/ORD00009.png', '1'),
+(12, 'ORD00009', 'T0009202107032', 'J0001', 'PL0001', 'Lunas Agen', '', 'TJ002', 'Devi Kharisma', 'Sabtu, 03 Juli 2021, 13:42', '2021-07-03', 'B', '87', '2', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '04-07-2021 13:42:52', 'assets/frontend/upload/qrcode/ORD00009.png', '1'),
+(13, 'ORD00009', 'T0009202107033', 'J0001', 'PL0001', 'Lunas Agen', '', 'TJ002', 'Devi Kharisma', 'Sabtu, 03 Juli 2021, 13:42', '2021-07-03', 'C', '87', '3', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '04-07-2021 13:42:52', 'assets/frontend/upload/qrcode/ORD00009.png', '1'),
+(14, 'ORD00009', 'T0009202107034', 'J0001', 'PL0001', 'Lunas Agen', '', 'TJ002', 'Devi Kharisma', 'Sabtu, 03 Juli 2021, 13:42', '2021-07-03', 'D', '87', '4', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '04-07-2021 13:42:52', 'assets/frontend/upload/qrcode/ORD00009.png', '1'),
+(15, 'ORD00010', 'T0010202107035', 'J0001', 'PL0001', 'Transfer', 'AG001', 'TJ002', 'Devi Kharisma', 'Sabtu, 03 Juli 2021, 17:33', '2021-07-03', 'Devi Kharisma', '90', '5', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '04-07-2021 17:33:17', 'assets/frontend/upload/qrcode/ORD00010.png', '1');
 
 -- --------------------------------------------------------
 
@@ -341,7 +364,12 @@ CREATE TABLE IF NOT EXISTS `tbl_tiket` (
 --
 
 INSERT INTO `tbl_tiket` (`kd_tiket`, `kd_order`, `nama_tiket`, `kursi_tiket`, `umur_tiket`, `asal_beli_tiket`, `harga_tiket`, `etiket_tiket`, `status_tiket`, `create_tgl_tiket`, `create_admin_tiket`) VALUES
-('T0001202106147', 'ORD00001', 'Devi Karisma', '7', '21 Tahun', 'TJ002', '130000', 'assets/backend/upload/etiket/ORD00001.pdf', '2', '2021-06-14', 'direktur');
+('T0001202106147', 'ORD00001', 'Devi Karisma', '7', '21 Tahun', 'TJ002', '130000', 'assets/backend/upload/etiket/ORD00001.pdf', '2', '2021-06-14', 'direktur'),
+('T0002202106143', 'ORD00002', 'Devi A', '3', '88 Tahun', 'TJ002', '130000', 'assets/backend/upload/etiket/ORD00002.pdf', '2', '2021-06-28', 'operator'),
+('T0002202106146', 'ORD00002', 'Devi B', '6', '87 Tahun', 'TJ002', '130000', 'assets/backend/upload/etiket/ORD00002.pdf', '2', '2021-06-28', 'operator'),
+('T0004202106281', 'ORD00004', 'Devi Kharisma', '1', '89 Tahun', 'TJ002', '130000', 'assets/backend/upload/etiket/ORD00004.pdf', '2', '2021-06-28', 'operator'),
+('T0004202106283', 'ORD00004', 'Ahmad', '3', '87 Tahun', 'TJ002', '130000', 'assets/backend/upload/etiket/ORD00004.pdf', '2', '2021-06-28', 'operator'),
+('T0005202106281', 'ORD00005', 'Devi A', '1', '86 Tahun', 'TJ002', '200000', 'assets/backend/upload/etiket/ORD00005.pdf', '2', '2021-07-03', 'operator');
 
 -- --------------------------------------------------------
 

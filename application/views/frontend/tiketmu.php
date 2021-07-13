@@ -26,7 +26,16 @@
 			<br>
 			<h2 class="text-white" align="center">Tiket Saya</h2>
 			<div class="container ">
+			
 				<div class="row d-flex justify-content-center">
+				<form action="<?php echo base_url() ?>profile/caritiketsaya?>" method="get">
+									<div class="form-group">
+										<label for="exampleInputEmail1">Pilih Tanggal</label>
+										<input placeholder="Masukkan tanggal" type="text" class="form-control datepicker" name="tanggal" required="">
+									</div>
+									<a href="<?php echo base_url() ?>home" class="btn btn-primary pull-left">Kembali </a>
+									<button type="submit" class="btn btn-primary pull-right">Cari </button>
+								</form>
 					<?php foreach ($tiket as $row) { ?>
 					<div class="col-sm-3">
 						&nbsp;
@@ -61,5 +70,23 @@
 				<?php $this->load->view('frontend/include/base_footer'); ?>
 				<!-- js -->
 				<?php $this->load->view('frontend/include/base_js'); ?>
+				<script type="text/javascript">
+			 $(function(){
+			 	var date = new Date();
+				date.setDate(date.getDate());
+
+			  $(".datepicker").datepicker({
+			  		startDate: date,
+			      format: 'yyyy-mm-dd',
+			      autoclose: true,
+			      todayHighlight: true,
+			  });
+			 });
+			</script>
+			<script type="text/javascript">
+				$(document).ready(function() {
+				$('.js-example-basic-single').select2();
+				});
+			</script>
 			</body>
 		</html>
