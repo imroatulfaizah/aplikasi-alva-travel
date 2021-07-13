@@ -34,11 +34,11 @@
 								<i class="fa fa-address-card-o"></i> Daftar
 							</div>
 							<div class="card-body">
-								<form action="<?php echo base_url() ?>login/daftar" method="post">
+								<form action="<?php echo base_url() ?>login/register" method="post">
 									<div class="form-group">
 										<div class="form-group">
 											<div class="form-label-group">
-												<input type="text" name="name" class="form-control" required="" placeholder="Nama Kamu" value="<?php echo set_value('name') ?>">
+												<input type="text" name="name" class="form-control" required="" placeholder="Nama" value="<?php echo set_value('name') ?>">
 												<?php echo form_error('name'),'<small class="text-danger pl-3">','</small>'; ?>
 											</div>
 										</div>

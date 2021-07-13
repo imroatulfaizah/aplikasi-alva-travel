@@ -18,7 +18,52 @@ class Login extends CI_Controller {
 		redirect(base_url('login'));
 	}
 	public function cekuser(){
+	$sebagai = strtolower($this->input->post('sebagai'));
+
+	if($sebagai == "agens"){
 	$username = strtolower($this->input->post('username'));
+    $ambil = $this->db->query('select * from tbl_agens where username_agen = "'.$username.'"')->row_array();
+    $password = $this->input->post('password');
+		if ($ambil) {
+			 if ($ambil['status_agen'] == '1') { 
+				if (password_verify($password,$ambil['password_agen'])) {
+		    	$this->db->where('username_agen',$username);
+		        $query = $this->db->get('tbl_agens');
+		            foreach ($query->result() as $row) {
+		                $sess = array(
+		                	'kd_agen' => $row->kd_agen,
+		                    'username' => $row->username_agen,
+		                    'password' => $row->password_agen,
+		                    'ktp'     => $row->no_ktp_agen,
+		                    'nama_lengkap'     => $row->nama_agen,
+		                    'img_agen'	=> $row->img_agen,
+		                    'email'   => $row->email_agen,
+		                    'telpon'   => $row->telpon_agen,
+		                    'alamat'	=> $row->alamat_agen
+		                	);
+		                }
+		                $this->session->set_userdata($sess);
+		                if ($this->session->userdata('jadwal') == NULL) {
+		                	redirect('tiket');
+		                }else{
+		                	redirect('tiket/beforebeli/'.$this->session->userdata('jadwal').'/'.$this->session->userdata('asal').'/'.$this->session->userdata('tanggal'));
+		                }
+            		}else{
+            		$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+					  Salah Password
+					</div>');
+				redirect('login');
+            	}
+
+		}else{
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+					  Username Tidak Terdaftar
+					</div>');
+    		redirect('login');
+			}
+		}
+	}else if($sebagai == "pelanggan"){
+		$username = strtolower($this->input->post('username'));
     $ambil = $this->db->query('select * from tbl_pelanggan where username_pelanggan = "'.$username.'"')->row_array();
     $password = $this->input->post('password');
 		if ($ambil) {
@@ -59,6 +104,7 @@ class Login extends CI_Controller {
     		redirect('login');
 			}
 		}
+	}
 	}
 	public function daftar(){
 		$this->form_validation->set_rules('nomor', 'Nomor', 'trim|required|is_unique[tbl_pelanggan.telpon_pelanggan]',array(
@@ -107,7 +153,7 @@ class Login extends CI_Controller {
 	}
 
 	public function register(){
-		$this->form_validation->set_rules('nomor', 'Nomor', 'trim|required|is_unique[tbl_pelanggan.telpon_pelanggan]',array(
+		$this->form_validation->set_rules('nomor', 'Nomor', 'trim|required|is_unique[tbl_agens.hp_agen]',array(
 			'required' => 'Nomor HP Wajib Di isi.',
 			'is_unique' => 'Nomor Sudah Di Gunakan.'
 			 ));
@@ -115,11 +161,11 @@ class Login extends CI_Controller {
 			'required' => 'Nama Wajib Di isi.',
 			 ));
 		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|is_unique[tbl_pelanggan.username_pelanggan]',array(
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|is_unique[tbl_agens.username_agen]',array(
 			'required' => 'Username Wajib Di isi.',
 			'is_unique' => 'Username Sudah Di Gunakan.'
 			 ));
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[tbl_pelanggan.email_pelanggan]',array(
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[tbl_agens.email_agen]',array(
 			'required' => 'Email Wajib Di isi.',
 			'valid_email' => 'Masukan Email Dengan Benar',
 			'is_unique' => 'Email Sudah Di Gunakan.'
@@ -134,7 +180,7 @@ class Login extends CI_Controller {
 		} else {
 			$this->load->model('getkod_model');
 			$data = array(
-			'kd_agen'	=> $this->getkod_model->get_kodpel(),
+			'kd_agen'	=> $this->getkod_model->get_kodagen(),
 			'nama_agen'  => $this->input->post('name'),
 			'email_agen'	    	=> $this->input->post('email'),
 			'img_agen'		=> 'assets/frontend/img/default.png',
@@ -145,6 +191,7 @@ class Login extends CI_Controller {
 			'date_create_agen' => time(),
 			'password_agen'		=> password_hash($this->input->post('password1'),PASSWORD_DEFAULT)
 			);
+
 			$this->db->insert('tbl_agens', $data);
 			$this->session->set_flashdata('message', 'swal("Berhasil", "Pendaftaran Berhasil! Silahkan login kembali.", "success");');
     		redirect('login');

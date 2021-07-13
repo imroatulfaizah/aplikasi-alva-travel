@@ -12,7 +12,11 @@
 			          <?php if ($this->session->userdata('username')) { ?>
 				      	<li class="menu-has-children"><a href="">Hai, <?php echo $this->session->userdata('nama_lengkap'); ?></a>
 						<ul>
-							<li><a href="<?php echo base_url() ?>profile/profilesaya/<?php echo $this->session->userdata('kd_pelanggan') ?>"><i class="fa fa-id-card"></i> Profile Saya</a></li>
+							<?php if ($this->session->userdata('kd_agen') != NULL) { ?>
+								<li><a href="<?php echo base_url() ?>profile/profilesaya/<?php echo $this->session->userdata('kd_agen') ?>"><i class="fa fa-id-card"></i> Profile Saya</a></li>
+							<?php } else{ ?>
+								<li><a href="<?php echo base_url() ?>profile/profilesaya/<?php echo $this->session->userdata('kd_pelanggan') ?>"><i class="fa fa-id-card"></i> Profile Saya</a></li>
+							<?php } ?>
 							<li><a href="<?php echo base_url() ?>login/logout"><i class="fa fa-sign-out"></i> Keluar</a></li>
 						</ul>
 						</li>

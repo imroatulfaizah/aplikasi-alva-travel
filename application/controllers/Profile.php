@@ -10,12 +10,15 @@ class Profile extends CI_Controller {
 		$this->load->view('frontend/profile');
 	}
 	public function profilesaya($id=''){
+
 		$data['profile'] = $this->db->query("SELECT * FROM tbl_pelanggan WHERE kd_pelanggan LIKE '".$id."'")->row_array();
 		// die(print_r($data));
 		$this->load->view('frontend/profile',$data);
 	}
 	public function editprofile($id=''){
 		$id = $this->input->post('kode');
+		var_dump($id);
+		die();
 		$where = array('kd_pelanggan' => $id );
 		$update = array(
 			'no_ktp_pelanggan'			=> $this->input->post('ktp'),

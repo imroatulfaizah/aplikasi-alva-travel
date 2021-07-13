@@ -44,6 +44,14 @@
 										</div>
 									</div>
 									<div class="form-group">
+									<label for="exampleInputEmail1">Login Sebagai</label>
+										<select class="form-control" name="sebagai" id="sebagai">
+											<option value="" selected disabled="">Pilih Sebagai</option>
+											<option value="agens">Agen</option>
+											<option value="pelanggan">Customer</option>
+										</select>
+									</div>
+									<div class="form-group">
 										<div class="checkbox">
 											<label>
 												<input type="checkbox" value="remember-me">
