@@ -116,7 +116,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
                 <div class="col-sm-6">
                   <p>Armada     : <b> <?php echo $jadwal['kd_bus']." [".$jadwal['nama_bus'].'-'.$jadwal['plat_bus'] ?>]</b></p>
                   <p>Asal :  <b><?php echo $asal['kota_tujuan']; ?></b></p>
-                  <p>Tujuan  : <b><?php echo strtoupper($jadwal['kota_tujuan'])." - ".$jadwal['terminal_tujuan']; ?></b></p>
+                  <p>Tujuan  : <b><?php echo strtoupper($jadwal['kota_tujuan']); ?></b></p>
                   <p>Jam Berangkat    : <b><?php echo date('H:i',strtotime($jadwal['jam_berangkat_jadwal'])) ?></b></p>
                   <p>Jam Tiba : <b><?php echo date('H:i',strtotime($jadwal['jam_tiba_jadwal'])) ?></b></p>
                   <p>Harga : <b>Rp <?php echo $jadwal['harga_jadwal']; ?></b></p>
