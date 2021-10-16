@@ -114,7 +114,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
             <div class="card-body">
               <div class="row">
                 <div class="col-sm-6">
-                  <p>BUS     : <b> <?php echo $jadwal['kd_bus']." [".$jadwal['nama_bus'].'-'.$jadwal['plat_bus'] ?>]</b></p>
+                  <p>Armada     : <b> <?php echo $jadwal['kd_bus']." [".$jadwal['nama_bus'].'-'.$jadwal['plat_bus'] ?>]</b></p>
                   <p>Asal :  <b><?php echo $asal['kota_tujuan']; ?></b></p>
                   <p>Tujuan  : <b><?php echo strtoupper($jadwal['kota_tujuan'])." - ".$jadwal['terminal_tujuan']; ?></b></p>
                   <p>Jam Berangkat    : <b><?php echo date('H:i',strtotime($jadwal['jam_berangkat_jadwal'])) ?></b></p>
@@ -126,7 +126,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
             </div>
             <hr>
             <a class="btn btn-default" href="javascript:history.back()"> Kembali</a>
-            <button data-toggle="modal" data-target="#edit" class="btn btn-primary pull-rigth">Edit Harga</button>
+            <button data-toggle="modal" data-target="#edit" class="btn btn-primary pull-rigth">Edit Harga & Armada</button>
           </div>
       </div>
     </div>
@@ -170,7 +170,7 @@ span.onclick = function() {
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Edit Harga</h5>
+								<h5 class="modal-title" id="exampleModalLabel">Edit Harga & Armada</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 								</button>
@@ -184,6 +184,20 @@ span.onclick = function() {
 													<label for="nama" class="control-label">Masukkan Harga Baru</label>
 													<input type="text" class="form-control" name="harga" value="<?php echo $jadwal['harga_jadwal']?>" >
 													<input type="hidden" name="kode" value="<?php echo $jadwal['kd_jadwal']?>">
+												</div>
+                        <div class="row form-group">
+													<label for="nama" class="control-label">Masukkan Armada Baru</label>
+													<!-- <input type="text" class="form-control" name="armada" value="<php echo $jadwal['nama_bus']?>" > -->
+                          <select class="form-control" name="armada" required>
+                            <option value="" selected disabled="">-Pilih Armada-</option>
+                            <?php foreach ($armada as $row ) {?>
+                              <?php if($row['kd_bus'] == $jadwal['kd_bus']){ ?>
+                                <option selected value="<?php echo $row['kd_bus'] ?>" ><?php echo strtoupper($row['nama_bus']); ?></option>
+                              <?php }else{ ?>
+                            <option value="<?php echo $row['kd_bus'] ?>" ><?php echo strtoupper($row['nama_bus']); ?></option>
+                            <?php }} ?>
+                          </select>
+                          <!-- <input type="hidden" name="kode" value="<php echo $armada['kd_bus']?>"> -->
 												</div>
 											</div>
 										</div>

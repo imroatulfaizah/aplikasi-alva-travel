@@ -15,12 +15,12 @@
     <?php $this->load->view('backend/include/base_nav'); ?>
     <!-- Begin Page Content -->
     <div class="container-fluid">
-      <h1 class="h3 mb-2 text-gray-800">Data Bus</h1>
+      <h1 class="h3 mb-2 text-gray-800">Data Armada</h1>
       <!-- DataTales Example -->
       <div class="card shadow mb-4">
         <div class="card-header py-3">
           <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#ModalTujuan">
-          Tambah Bus
+          Tambah Armada
           </button>
         </div>
         <div class="card-body">
@@ -29,9 +29,9 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Kode Bus</th>
-                  <th>Nama Bus</th>
-                  <th>Plat Bus</th>
+                  <th>Kode Armada</th>
+                  <th>Nama Armada</th>
+                  <th>Plat Armada</th>
                   <th>Kapasitas Kursi</th>
                   <th>Status</th>
                   <th>Aksi</th>

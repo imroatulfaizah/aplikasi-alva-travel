@@ -72,8 +72,8 @@ class Tiket extends CI_Controller {
                WHERE kd_tujuan ='".$asal."'")->row_array();
 			$data['jadwal'] = $this->db->query("SELECT * FROM tbl_jadwal LEFT JOIN tbl_bus on tbl_jadwal.kd_bus = tbl_bus.kd_bus LEFT JOIN tbl_tujuan on tbl_jadwal.kd_tujuan = tbl_tujuan.kd_tujuan WHERE kd_jadwal ='".$id."'")->row_array();
 			$data['kursi'] = $this->db->query("SELECT no_kursi_order FROM tbl_order WHERE kd_jadwal = '".$data['jadwal']['kd_jadwal']."' AND tgl_berangkat_order = '".$data['tanggal']."' AND asal_order = '".$asal."'")->result_array();
-			// print_r($this->session->userdata());
-			// die(print_r($data));
+			// var_dump($this->session->userdata());
+			// die();
 			$this->load->view('frontend/beli_step1',$data);
 		}else{ 
 			redirect('login/autlogin');

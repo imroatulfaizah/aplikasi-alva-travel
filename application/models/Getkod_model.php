@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Getkod_model extends CI_Model {
 
-     function get_kodjad(){
+    function get_kodjad(){
             $q = $this->db->query("SELECT MAX(RIGHT(kd_jadwal,3)) AS kd_max FROM tbl_jadwal");
             $kd = "";
             if($q->num_rows()>0){

@@ -108,16 +108,16 @@ body {font-family: Arial, Helvetica, sans-serif;}
       <!-- Basic Card Example -->
       <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Kode Bus [<?php echo $bus['kd_bus']; ?>]  </h6>
+          <h6 class="m-0 font-weight-bold text-primary">Kode Armada [<?php echo $bus['kd_bus']; ?>]  </h6>
         </div>
         <div class="card-body">             
             <div class="card-body">
               <div class="row">
                 <div class="col-sm-6">
-                  <p>Nama BUS : <b> <?php echo $bus['nama_bus']?>]</b></p>
-                  <p>Plat Bus: <b><?php echo strtoupper($bus['plat_bus']) ?></b></p>
+                  <p>Nama Armada : <b> <?php echo $bus['nama_bus']?>]</b></p>
+                  <p>Plat Armada: <b><?php echo strtoupper($bus['plat_bus']) ?></b></p>
                   <p>Kapasitas Kursi : <b><?php echo $bus['kapasitas_bus']; ?> Kursi</b></p>
-                  <p>Status Bus    : <?php if ($bus['status_bus'] == '1') { ?>
+                  <p>Status Armada    : <?php if ($bus['status_bus'] == '1') { ?>
                     <td class="btn-success"> Online</td> 
                     <?php } else { ?>
                     <td class="btn-danger">Offline</td>

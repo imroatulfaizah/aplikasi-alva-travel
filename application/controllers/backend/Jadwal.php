@@ -70,6 +70,10 @@ class Jadwal extends CI_Controller {
 	 	if ($sqlcek) {
 	 		$data['asal'] = $this->db->query("SELECT * FROM tbl_tujuan WHERE kd_tujuan = '".$sqlcek['kd_asal']."'")->row_array();
 	 		$data['jadwal'] = $sqlcek;
+			 $data['armada'] = $this->db->query("SELECT * FROM tbl_bus ORDER BY nama_bus asc")->result_array();
+
+			// var_dump($data);
+			// die();
 			$data['title'] = "View jadwal";
 			// die(print_r($data));
 			$this->load->view('backend/view_jadwal',$data);
@@ -81,7 +85,7 @@ class Jadwal extends CI_Controller {
 	public function editharga($id=''){
 		$kode = (trim(html_escape($this->input->post('kode'))));
 		$where = array('kd_jadwal' => $kode );
-		$update = array('harga_jadwal' =>  $this->input->post('harga'));
+		$update = array('harga_jadwal' =>  $this->input->post('harga'),'kd_bus' => $this->input->post('armada'));
 		$this->db->update('tbl_jadwal', $update,$where);
 		$this->session->set_flashdata('message', 'swal("Berhasil", "Data Di Edit", "success");');
 		redirect('backend/jadwal/');
