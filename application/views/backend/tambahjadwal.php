@@ -46,7 +46,7 @@
                     </select>
                   </div>
                   <div class="form-group">
-                    <label  class="">Bus</label>
+                    <label  class="">Armada</label>
                     <select class="form-control" name="bus">
                       <option value="" selected disabled="">-Pilih Armada-</option>
                       <?php foreach ($bus as $row ) {?>
