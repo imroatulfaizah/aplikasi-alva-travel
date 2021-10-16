@@ -57,7 +57,7 @@ class Getkod_model extends CI_Model {
             return "D".$kd;
         }
     function get_kodagen(){
-            $q = $this->db->query("SELECT MAX(RIGHT(kd_agen,3)) AS kd_max FROM tbl_agen");
+            $q = $this->db->query("SELECT MAX(RIGHT(kd_agen,3)) AS kd_max FROM tbl_agens");
             $kd = "";
             if($q->num_rows()>0){
                 foreach($q->result() as $k){
