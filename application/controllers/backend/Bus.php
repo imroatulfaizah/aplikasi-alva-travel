@@ -33,4 +33,13 @@ class Bus extends CI_Controller {
 		redirect('backend/bus');
 	}
 
+	public function editstatus($id=''){
+		$kode = (trim(html_escape($this->input->post('kode'))));
+		$where = array('kd_bus' => $kode );
+		$update = array('status_bus' =>  $this->input->post('status'));
+		$this->db->update('tbl_bus', $update,$where);
+		$this->session->set_flashdata('message', 'swal("Berhasil", "Data Di Edit", "success");');
+		redirect('backend/bus/');
+	}
+
 }

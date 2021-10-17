@@ -9,7 +9,7 @@ class agen extends CI_Controller {
 	}
 	public function index(){
 	$data['title'] = "List Agen";
-	$data['agen'] = $this->db->query("SELECT * FROM tbl_agens ORDER BY nama_agen asc")->result_array();
+	$data['agen'] = $this->db->query("SELECT * FROM tbl_agens ORDER BY kd_agen asc")->result_array();
 	// die(print_r($data));
 	$this->load->view('backend/agen', $data);	
 	}
