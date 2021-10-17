@@ -73,7 +73,7 @@ class Jadwal extends CI_Controller {
 	 	if ($sqlcek) {
 	 		$data['asal'] = $this->db->query("SELECT * FROM tbl_tujuan WHERE kd_tujuan = '".$sqlcek['kd_asal']."'")->row_array();
 	 		$data['jadwal'] = $sqlcek;
-			 $data['armada'] = $this->db->query("SELECT * FROM tbl_bus ORDER BY nama_bus asc")->result_array();
+			$data['armada'] = $this->db->query("SELECT * FROM tbl_bus ORDER BY nama_bus asc")->result_array();
 
 			// var_dump($data);
 			// die();
