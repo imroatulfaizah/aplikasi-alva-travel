@@ -20,6 +20,21 @@
         <a class="nav-link" href="<?php echo base_url() ?>backend/home">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard </span></a>
+        <a class="nav-link" href="<?php echo base_url() ?>backend/agen">
+          <i class="fas fa fa-users"></i>
+        <span>Agen</span></a>
+        <a class="nav-link" href="<?php echo base_url() ?>backend/bus">
+          <i class="fas fa fa-bus"></i>
+          <span>Armada</span></a>
+        <a class="nav-link" href="<?php echo base_url() ?>backend/driver">
+          <i class="fas fa fa-users"></i>
+          <span>Driver</span></a>
+        <a class="nav-link" href="<?php echo base_url() ?>backend/jadwal">
+          <i class="fas fa fa-clipboard-list"></i>
+          <span>Jadwal & Harga</span></a>
+        <a class="nav-link" href="<?php echo base_url() ?>backend/rute">
+          <i class="fas fa fa-compass"></i>
+          <span>Tujuan & Asal</span></a>
         <a class="nav-link" href="<?php echo base_url() ?>backend/order">
           <i class="fas fa-list-alt"></i>
           <span>List Order</span></a>
@@ -29,21 +44,6 @@
         <a class="nav-link" href="<?php echo base_url() ?>backend/konfirmasi">
           <i class="fa fa-mouse-pointer"></i>
           <span>List Konfirmasi</span></a>
-        <a class="nav-link" href="<?php echo base_url() ?>backend/jadwal">
-          <i class="fas fa fa-clipboard-list"></i>
-          <span>Jadwal & Harga</span></a>
-        <a class="nav-link" href="<?php echo base_url() ?>backend/rute">
-          <i class="fas fa fa-compass"></i>
-          <span>Tujuan & Asal</span></a>
-        <a class="nav-link" href="<?php echo base_url() ?>backend/bus">
-          <i class="fas fa fa-bus"></i>
-          <span>Armada</span></a>
-        <a class="nav-link" href="<?php echo base_url() ?>backend/driver">
-          <i class="fas fa fa-users"></i>
-          <span>Driver</span></a>
-        <a class="nav-link" href="<?php echo base_url() ?>backend/agen">
-        <i class="fas fa fa-users"></i>
-        <span>Agen</span></a>
         <?php if ($this->session->userdata('level') == '1') { ?>
            <a class="nav-link" href="<?php echo base_url() ?>backend/bank">
           <i class="fas fa fa-link"></i>
