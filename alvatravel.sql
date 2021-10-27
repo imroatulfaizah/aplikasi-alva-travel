@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 13, 2021 at 08:54 PM
+-- Generation Time: Oct 17, 2021 at 09:15 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -82,14 +82,14 @@ INSERT INTO `tbl_agen` (`kd_agen`, `nama_agen`, `alamat_agen`, `hp_agen`, `statu
 DROP TABLE IF EXISTS `tbl_agens`;
 CREATE TABLE IF NOT EXISTS `tbl_agens` (
   `kd_agen` varchar(50) COLLATE latin1_general_ci NOT NULL,
-  `username_agen` varchar(50) COLLATE latin1_general_ci NOT NULL,
-  `password_agen` varchar(200) COLLATE latin1_general_ci NOT NULL,
-  `no_ktp_agen` varchar(50) COLLATE latin1_general_ci NOT NULL,
-  `nama_agen` varchar(100) COLLATE latin1_general_ci NOT NULL,
-  `alamat_agen` varchar(200) COLLATE latin1_general_ci NOT NULL,
-  `email_agen` varchar(100) COLLATE latin1_general_ci NOT NULL,
-  `hp_agen` varchar(20) COLLATE latin1_general_ci NOT NULL,
-  `img_agen` varchar(200) COLLATE latin1_general_ci NOT NULL,
+  `username_agen` varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  `password_agen` varchar(200) COLLATE latin1_general_ci DEFAULT NULL,
+  `no_ktp_agen` varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  `nama_agen` varchar(100) COLLATE latin1_general_ci DEFAULT NULL,
+  `alamat_agen` varchar(200) COLLATE latin1_general_ci DEFAULT NULL,
+  `email_agen` varchar(100) COLLATE latin1_general_ci DEFAULT NULL,
+  `hp_agen` varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  `img_agen` varchar(200) COLLATE latin1_general_ci DEFAULT NULL,
   `status_agen` int(1) DEFAULT NULL,
   `date_create_agen` varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
   PRIMARY KEY (`kd_agen`)
@@ -101,7 +101,8 @@ CREATE TABLE IF NOT EXISTS `tbl_agens` (
 
 INSERT INTO `tbl_agens` (`kd_agen`, `username_agen`, `password_agen`, `no_ktp_agen`, `nama_agen`, `alamat_agen`, `email_agen`, `hp_agen`, `img_agen`, `status_agen`, `date_create_agen`) VALUES
 ('AG001', 'agen01', '$2y$10$dVZ8spZkicGE6N9aSZdZpe7u6SvZlYcMlr4z4riDmUVsJo7v1lH7m', '350708999009922', 'Ahmad Saifuddin', 'Jl. Simpang Jogja No. 48', 'devi@gmail.com', '085735626777', 'assets/frontend/img/default.png', 1, '1622368947'),
-('AG002', 'testes', '$2y$10$fKavpZMDn.0t2eiDVSssEuBEZbQY6zXNOfVqMNGWdbQAqODdmxzVy', '350708999009910', 'tes', 'tes', 'tes@gmail.com', '085777666555', 'assets/frontend/img/default.png', 1, '1626181704');
+('AG002', 'testes', '$2y$10$fKavpZMDn.0t2eiDVSssEuBEZbQY6zXNOfVqMNGWdbQAqODdmxzVy', '350708999009910', 'tes', 'tes', 'tes@gmail.com', '085777666555', 'assets/frontend/img/default.png', 1, '1626181704'),
+('AG003', NULL, NULL, NULL, 'Agen A', 'tes', NULL, '09271717271', NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -151,7 +152,8 @@ CREATE TABLE IF NOT EXISTS `tbl_bus` (
 --
 
 INSERT INTO `tbl_bus` (`kd_bus`, `nama_bus`, `plat_bus`, `kapasitas_bus`, `status_bus`, `desc_bus`) VALUES
-('B001', 'Elf 1', 'N 1265 FF', 10, 1, NULL);
+('B001', 'Elf 1', 'N 1265 FF', 10, 0, NULL),
+('B002', 'ELF 2', 'N 1265 FF', 10, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -202,12 +204,13 @@ CREATE TABLE IF NOT EXISTS `tbl_jadwal` (
 --
 
 INSERT INTO `tbl_jadwal` (`kd_jadwal`, `kd_bus`, `kd_tujuan`, `kd_asal`, `wilayah_jadwal`, `tanggal`, `jam_berangkat_jadwal`, `jam_tiba_jadwal`, `harga_jadwal`) VALUES
-('J0001', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-07-28', '18:56:00', '18:56:00', '130000'),
-('J0002', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-07-06', '07:01:00', '01:01:00', '200000'),
+('J0001', 'B002', 'TJ001', 'TJ002', 'Jogja', '2021-07-28', '18:56:00', '18:56:00', '130000'),
+('J0002', 'B002', 'TJ001', 'TJ002', 'Jogja', '2021-07-06', '07:01:00', '01:01:00', '200000'),
 ('J0003', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-07-03', '01:06:00', '20:07:00', '200000'),
 ('J0004', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-06-30', '01:08:00', '17:08:00', '200000'),
 ('J0005', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-07-18', '13:58:00', '20:58:00', '200000'),
-('J0006', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-10-13', '11:51:00', '15:51:00', '200000');
+('J0006', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-09-13', '11:51:00', '15:51:00', '200000'),
+('J0007', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-10-19', '06:23:00', '13:23:00', '130000');
 
 -- --------------------------------------------------------
 
@@ -322,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `tbl_order` (
   KEY `kd_kustomer` (`kd_pelanggan`),
   KEY `kd_tiket` (`kd_tiket`),
   KEY `kd_bank` (`kd_bank`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_order`
@@ -339,7 +342,8 @@ INSERT INTO `tbl_order` (`id_order`, `kd_order`, `kd_tiket`, `kd_jadwal`, `kd_pe
 (14, 'ORD00009', 'T0009202107034', 'J0001', 'PL0001', 'Lunas Agen', '', 'TJ002', 'Devi Kharisma', 'Sabtu, 03 Juli 2021, 13:42', '2021-07-03', 'D', '87', '4', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '04-07-2021 13:42:52', 'assets/frontend/upload/qrcode/ORD00009.png', '1'),
 (15, 'ORD00010', 'T0010202107035', 'J0001', 'PL0001', 'Transfer', 'AG001', 'TJ002', 'Devi Kharisma', 'Sabtu, 03 Juli 2021, 17:33', '2021-07-03', 'Devi Kharisma', '90', '5', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '04-07-2021 17:33:17', 'assets/frontend/upload/qrcode/ORD00010.png', '1'),
 (16, 'ORD00011', 'T0011202107181', 'J0005', 'PL0001', 'Lunas Agen', '', 'TJ002', 'Devi Kharisma', 'Selasa, 13 Juli 2021, 14:15', '2021-07-18', 'Devi Kharisma', '89', '1', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '14-07-2021 14:15:30', 'assets/frontend/upload/qrcode/ORD00011.png', '1'),
-(17, 'ORD00012', 'T0012202107182', 'J0005', NULL, 'Lunas Agen', '', 'TJ002', 'Ahmad Saifuddin', 'Selasa, 13 Juli 2021, 21:49', '2021-07-18', 'Devi Kharisma', '89', '2', '350708999009922', '085777666555', 'Jl. Simpang Jogja No. 48', 'devi@gmail.com', '14-07-2021 21:49:23', 'assets/frontend/upload/qrcode/ORD00012.png', '1');
+(17, 'ORD00012', 'T0012202107182', 'J0005', NULL, 'Lunas Agen', '', 'TJ002', 'Ahmad Saifuddin', 'Selasa, 13 Juli 2021, 21:49', '2021-10-18', 'Devi Kharisma', '89', '2', '350708999009922', '085777666555', 'Jl. Simpang Jogja No. 48', 'devi@gmail.com', '14-07-2021 21:49:23', 'assets/frontend/upload/qrcode/ORD00012.png', '1'),
+(18, 'ORD00011', 'T0011202107181', 'J0005', 'PL0001', 'Lunas Agen', '', 'TJ002', 'Devi Kharisma', 'Selasa, 13 Juli 2021, 14:15', '2020-07-18', 'Devi Kharisma', '89', '1', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '14-07-2021 14:15:30', 'assets/frontend/upload/qrcode/ORD00011.png', '1');
 
 -- --------------------------------------------------------
 

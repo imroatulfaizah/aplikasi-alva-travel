@@ -21,6 +21,25 @@
         <div class="card-header py-3">
         </div>
         <div class="card-body">
+        <div class="col-sm-14">
+        <form action="<?php echo base_url()?>backend/order/" method="post">
+            <div class="row form-group">
+              <label for="nama" class="control-label">Pilih Filter Range Waktu</label>
+              <select class="form-control" name="filter" required>
+                <option value="" selected disabled="">-Pilih Filter-</option>
+                <option value="minggu" >1 Minggu</option>
+                <option value="bulan" >1 Bulan</option>
+                <option value="tahun" >1 Tahun</option>
+              </select>
+              
+              <!-- <input type="hidden" name="kode" value="<php echo $bus['kd_bus']?>"> -->
+            </div>
+            <div>
+            <input  type="submit" class="btn btn-primary pull-rigth" value="Cari">
+            </div>
+            <br>
+          </div>
+          </form>
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>

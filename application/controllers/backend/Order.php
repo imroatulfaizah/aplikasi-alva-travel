@@ -18,7 +18,29 @@ class Order extends CI_Controller {
 	}
 	public function index(){
 		$data['title'] = "List Order";
- 		$data['order'] = $this->db->query("SELECT * FROM tbl_order group by kd_order")->result_array();
+		$filter = $this->input->post('filter');
+		//var_dump($filter);
+		if($filter!=null){
+			//var_dump("tes");
+			if($filter=="minggu"){
+				//var_dump("tes1");
+				$data['order'] = $this->db->query("SELECT * FROM tbl_order
+				where tgl_berangkat_order> now() -  interval 7 day")->result_array();
+			}else if($filter=="bulan"){
+				//var_dump("tes2");
+				$data['order'] = $this->db->query("SELECT * FROM tbl_order
+				WHERE month(tgl_berangkat_order)=month(now())")->result_array();
+				// var_dump($data);
+				// die();
+			}else{
+				//var_dump("tes3");
+				$data['order'] = $this->db->query("SELECT * FROM tbl_order 
+				WHERE tgl_berangkat_order BETWEEN CURDATE() - INTERVAL 1 YEAR AND CURDATE()")->result_array();
+			}
+		}else{
+			$data['order'] = $this->db->query("SELECT * FROM tbl_order")->result_array();
+		}
+ 		
 		$this->load->view('backend/order', $data);
 	}
 	public function vieworder($id=''){
