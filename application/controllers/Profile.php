@@ -71,8 +71,15 @@ class Profile extends CI_Controller {
 	public function caritiketsaya($tanggal=''){
 		$this->getsecurity();
 		$tanggal = $_GET['tanggal'];
-		$sqlcek = $this->db->query("SELECT * FROM tbl_order WHERE tgl_berangkat_order ='".$tanggal."' group by kd_order")->result_array();
-	
+		$kode = $this->session->userdata('kd_agen');
+		$kd_pelanggan = $this->session->userdata('kd_pelanggan');
+		$cut = substr($kode, 0, 2);
+		if($cut == "AG"){
+			$sqlcek = $this->db->query("SELECT * FROM tbl_order WHERE tgl_berangkat_order ='".$tanggal."' && kd_agen = '".$kode."' group by kd_order")->result_array();
+		}else{
+			$sqlcek = $this->db->query("SELECT * FROM tbl_order WHERE tgl_berangkat_order ='".$tanggal."' && kd_agen = '".$kd_pelanggan."' group by kd_order")->result_array();
+		}
+
 		if ($sqlcek != null) {
 		
 		$data['tiket'] = $sqlcek;
@@ -82,7 +89,7 @@ class Profile extends CI_Controller {
 		$this->load->view('frontend/tiketmu',$data);
 		}else{
 			$this->session->set_flashdata('message', 'swal("Kosong", "Tiket Order Tidak Ada", "error");');
-    		redirect('frontend/tiketmu');
+    		redirect('profile/tiketsaya');
 		}
 	}
 
