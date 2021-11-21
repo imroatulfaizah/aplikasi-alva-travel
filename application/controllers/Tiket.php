@@ -102,6 +102,7 @@ class Tiket extends CI_Controller {
 		$getkode =  $this->getkod_model->get_kodtmporder();
 		$kd_jadwal = $this->session->userdata('jadwal');
 		$kd_pelanggan = $this->session->userdata('kd_pelanggan');
+		$kd_agen = $this->session->userdata('kd_agen');
 		$tglberangkat = $this->input->post('tgl');
 		$jambeli = date("Y-m-d H:i:s");
 		$nama =  $this->input->post('nama');
@@ -125,6 +126,7 @@ class Tiket extends CI_Controller {
 				'kd_tiket' => 'T'.str_replace('ORD0','',$getkode).str_replace('-','',$tglberangkat).$kursi[$i],
 				'kd_jadwal'	=> $kd_jadwal,
 				'kd_pelanggan' => $kd_pelanggan,
+				'kd_agen' => $kd_agen,
 				'asal_order' => $asal['kd_tujuan'],
 				'nama_order'	=> $nama_pemesan,
 				'tgl_beli_order'	=> $tanggal,

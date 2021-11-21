@@ -10,6 +10,7 @@
 			          <li><a href="<?php echo base_url() ?>tiket">Cari & Pesan Tiket</a></li>
 			          <li class="menu"><a href="<?php echo base_url() ?>profile/tiketsaya/<?php echo $this->session->userdata('kd_pelanggan') ?>">Tiket Saya</a></li>
 			          <?php if ($this->session->userdata('username')) { ?>
+						<li><a href="<?php echo base_url() ?>#">Komplain</a></li>
 				      	<li class="menu-has-children"><a href="">Hai, <?php echo $this->session->userdata('nama_lengkap'); ?></a>
 						<ul>
 							<?php if ($this->session->userdata('kd_agen') != NULL) { ?>

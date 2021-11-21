@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 17, 2021 at 09:15 PM
+-- Generation Time: Oct 28, 2021 at 12:30 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `tbl_driver` (
 --
 
 INSERT INTO `tbl_driver` (`kd_driver`, `nama_driver`, `alamat_driver`, `hp_driver`, `status_driver`) VALUES
-('D001', 'tes', 'tes', 'tes', 1);
+('D001', 'tes', 'tes', 'tes', 2);
 
 -- --------------------------------------------------------
 

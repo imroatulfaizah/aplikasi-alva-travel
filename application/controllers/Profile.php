@@ -52,8 +52,19 @@ class Profile extends CI_Controller {
 	}
 	public function tiketsaya($id=''){
 		$this->getsecurity();
-		$data['tiket'] = $this->db->query("SELECT * FROM tbl_order WHERE kd_pelanggan ='".$id."' group by kd_order")->result_array();
-		// die(print_r($data));
+		$kode = $this->session->userdata('kd_agen');
+		$cut = substr($kode, 0, 2);
+		if($cut == "AG"){
+			// echo $kode;
+			// echo "yes";
+			$data['tiket'] = $this->db->query("SELECT * FROM tbl_order WHERE kd_agen ='".$kode."' group by kd_order")->result_array();
+		}else{
+			// echo "no";
+			// echo $id;
+			$data['tiket'] = $this->db->query("SELECT * FROM tbl_order WHERE kd_pelanggan ='".$id."' group by kd_order")->result_array();
+		}		
+		//die(print_r($data));
+		//die();
 		$this->load->view('frontend/tiketmu',$data);
 	}
 

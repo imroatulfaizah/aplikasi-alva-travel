@@ -39,6 +39,18 @@
 										<label for="exampleInputEmail1">Kode Order</label>
 										<input type="text" id="" class="form-control" id="" name="kd_order" value="<?php echo $id ?>" placeholder="Kode Tiket">
 									</div>
+									<?php  
+										// $this->load->library('session');
+        								// echo "<pre>". print_r((array)$this->session, true) ."</pre>"; 
+										$kode = $this->session->userdata('kd_agen');
+										$cut = substr($kode, 0, 2);
+										//echo $cut;
+										// if($cut == "AG"){
+										// 	echo "yes";
+										// }else{
+										// 	echo "no";
+										// }
+										// ?>
 									<div class="form-group">
 										<label for="exampleInputEmail1">Pembayaran Kamu</label>
 										<select class="form-control" name="bank_km" id="bank_km">
@@ -47,14 +59,21 @@
 											<option value="Mandiri">Mandiri</option>
 											<option value="BNI">BNI</option>
 											<option value="BRI">BRI</option> -->
-											<option value="Lunas Agen">Lunas Agen</option>
+											<?php
+												if($cut == "AG"){ ?>
+													<option value="Lunas Agen">Lunas Agen</option>
+												<?php }else { ?>
+													<option value="Transfer">Transfer</option>
+												<?php }
+											?>
+											
 											<option value="Bayar Driver">Bayar Driver</option>
-											<option value="Transfer">Transfer</option>
+											
 										</select>
 									</div>
-									<div class="form-group" id="id_agen" style="display:none;">
+									<div class="form-group" id="id_agen" style="display:none;" required>
 										<label for="exampleInputEmail1">Agen</label>
-										<select class="form-control" name="agen" required>
+										<select class="form-control" name="agen">
 											<option value="" selected disabled="">Pilih Agen</option>
 											<?php foreach ($agen as $row) { ?>
 											<option value="<?php echo $row['kd_agen'] ?>"><?php echo $row['nama_agen']; ?></option>
@@ -104,11 +123,15 @@
 					$("#id_norek").hide();
 					$("#id_pengirim").hide();
 					$("#id_agen").hide();
+					$('#id_agen').removeAttr('required');
+					$('#agen').removeAttr('required');
                 } else {
 					console.log("3");
                     $("#id_norek").show();
 					$("#id_pengirim").show();
 					$("#id_agen").hide();
+					$('#id_agen').removeAttr('required');
+					$('#agen').removeAttr('required');
                 }
             });
 	</script>
