@@ -104,11 +104,23 @@
 																<option value="<php echo $row['kd_bank'] ?>"><php echo $row['nama_bank']; ?></option>
 																<php } ?>
 															</select> -->
+															<?php 
+															$kode = $this->session->userdata('kd_agen');
+															$cut = substr($kode, 0, 2);
+															?>
 															<select class="form-control" name="bank" required>
-																<option value="" selected disabled="">Pilih Pembayaran</option>
+																<!-- <option value="" selected disabled="">Pilih Pembayaran</option>
 																<option value="Lunas Agen">Lunas Agen</option>
 																<option value="Bayar Driver">Bayar Driver</option>
-																<option value="Transfer">Transfer</option>
+																<option value="Transfer">Transfer</option> -->
+																<?php
+																if($cut == "AG"){ ?>
+																	<option value="Lunas Agen">Lunas Agen</option>
+																<?php }else { ?>
+																	<option value="Transfer">Transfer</option>
+																<?php }
+																?>
+																<option value="Bayar Driver">Bayar Driver</option>
 															</select>
 														</div>
 														<hr>

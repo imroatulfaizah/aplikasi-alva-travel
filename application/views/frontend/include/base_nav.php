@@ -15,6 +15,7 @@
 						<ul>
 							<?php if ($this->session->userdata('kd_agen') != NULL) { ?>
 								<li><a href="<?php echo base_url() ?>profile/profilesaya/<?php echo $this->session->userdata('kd_agen') ?>"><i class="fa fa-id-card"></i> Profile Saya</a></li>
+								<li><a href="<?php echo base_url() ?>laporan/index/<?php echo $this->session->userdata('kd_agen') ?>"><i class="fa fa-id-card"></i> Laporan Bulanan</a></li>
 							<?php } else{ ?>
 								<li><a href="<?php echo base_url() ?>profile/profilesaya/<?php echo $this->session->userdata('kd_pelanggan') ?>"><i class="fa fa-id-card"></i> Profile Saya</a></li>
 							<?php } ?>
