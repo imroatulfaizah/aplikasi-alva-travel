@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Oct 28, 2021 at 12:30 AM
--- Server version: 5.7.21
--- PHP Version: 7.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Nov 23, 2021 at 02:12 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -28,8 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `tbl_admin`
 --
 
-DROP TABLE IF EXISTS `tbl_admin`;
-CREATE TABLE IF NOT EXISTS `tbl_admin` (
+CREATE TABLE `tbl_admin` (
   `kd_admin` varchar(50) NOT NULL,
   `nama_admin` varchar(35) DEFAULT NULL,
   `username_admin` varchar(30) DEFAULT NULL,
@@ -38,8 +36,7 @@ CREATE TABLE IF NOT EXISTS `tbl_admin` (
   `email_admin` varchar(35) DEFAULT NULL,
   `level_admin` varchar(12) DEFAULT NULL,
   `status_admin` int(1) DEFAULT NULL,
-  `date_create_admin` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`kd_admin`)
+  `date_create_admin` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -56,14 +53,12 @@ INSERT INTO `tbl_admin` (`kd_admin`, `nama_admin`, `username_admin`, `password_a
 -- Table structure for table `tbl_agen`
 --
 
-DROP TABLE IF EXISTS `tbl_agen`;
-CREATE TABLE IF NOT EXISTS `tbl_agen` (
+CREATE TABLE `tbl_agen` (
   `kd_agen` varchar(50) NOT NULL,
   `nama_agen` varchar(150) NOT NULL,
   `alamat_agen` varchar(200) NOT NULL,
   `hp_agen` varchar(50) NOT NULL,
-  `status_agen` int(1) NOT NULL,
-  PRIMARY KEY (`kd_agen`)
+  `status_agen` int(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -79,8 +74,7 @@ INSERT INTO `tbl_agen` (`kd_agen`, `nama_agen`, `alamat_agen`, `hp_agen`, `statu
 -- Table structure for table `tbl_agens`
 --
 
-DROP TABLE IF EXISTS `tbl_agens`;
-CREATE TABLE IF NOT EXISTS `tbl_agens` (
+CREATE TABLE `tbl_agens` (
   `kd_agen` varchar(50) COLLATE latin1_general_ci NOT NULL,
   `username_agen` varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
   `password_agen` varchar(200) COLLATE latin1_general_ci DEFAULT NULL,
@@ -91,8 +85,7 @@ CREATE TABLE IF NOT EXISTS `tbl_agens` (
   `hp_agen` varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
   `img_agen` varchar(200) COLLATE latin1_general_ci DEFAULT NULL,
   `status_agen` int(1) DEFAULT NULL,
-  `date_create_agen` varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
-  PRIMARY KEY (`kd_agen`)
+  `date_create_agen` varchar(50) COLLATE latin1_general_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
@@ -110,14 +103,12 @@ INSERT INTO `tbl_agens` (`kd_agen`, `username_agen`, `password_agen`, `no_ktp_ag
 -- Table structure for table `tbl_bank`
 --
 
-DROP TABLE IF EXISTS `tbl_bank`;
-CREATE TABLE IF NOT EXISTS `tbl_bank` (
+CREATE TABLE `tbl_bank` (
   `kd_bank` varchar(50) NOT NULL,
   `nasabah_bank` varchar(50) DEFAULT NULL,
   `nama_bank` varchar(50) DEFAULT NULL,
   `nomrek_bank` varchar(50) DEFAULT NULL,
-  `photo_bank` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`kd_bank`)
+  `photo_bank` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -136,15 +127,13 @@ INSERT INTO `tbl_bank` (`kd_bank`, `nasabah_bank`, `nama_bank`, `nomrek_bank`, `
 -- Table structure for table `tbl_bus`
 --
 
-DROP TABLE IF EXISTS `tbl_bus`;
-CREATE TABLE IF NOT EXISTS `tbl_bus` (
+CREATE TABLE `tbl_bus` (
   `kd_bus` varchar(50) NOT NULL,
   `nama_bus` varchar(50) DEFAULT NULL,
   `plat_bus` varchar(50) DEFAULT NULL,
   `kapasitas_bus` int(13) DEFAULT NULL,
   `status_bus` int(1) DEFAULT NULL,
-  `desc_bus` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`kd_bus`)
+  `desc_bus` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -161,8 +150,7 @@ INSERT INTO `tbl_bus` (`kd_bus`, `nama_bus`, `plat_bus`, `kapasitas_bus`, `statu
 -- Table structure for table `tbl_driver`
 --
 
-DROP TABLE IF EXISTS `tbl_driver`;
-CREATE TABLE IF NOT EXISTS `tbl_driver` (
+CREATE TABLE `tbl_driver` (
   `kd_driver` varchar(50) NOT NULL,
   `nama_driver` varchar(150) NOT NULL,
   `alamat_driver` varchar(200) NOT NULL,
@@ -183,8 +171,7 @@ INSERT INTO `tbl_driver` (`kd_driver`, `nama_driver`, `alamat_driver`, `hp_drive
 -- Table structure for table `tbl_jadwal`
 --
 
-DROP TABLE IF EXISTS `tbl_jadwal`;
-CREATE TABLE IF NOT EXISTS `tbl_jadwal` (
+CREATE TABLE `tbl_jadwal` (
   `kd_jadwal` varchar(50) NOT NULL,
   `kd_bus` varchar(50) DEFAULT NULL,
   `kd_tujuan` varchar(50) DEFAULT NULL,
@@ -193,10 +180,7 @@ CREATE TABLE IF NOT EXISTS `tbl_jadwal` (
   `tanggal` date DEFAULT NULL,
   `jam_berangkat_jadwal` time DEFAULT NULL,
   `jam_tiba_jadwal` time DEFAULT NULL,
-  `harga_jadwal` varchar(50) NOT NULL,
-  PRIMARY KEY (`kd_jadwal`),
-  KEY `kd_bus` (`kd_bus`),
-  KEY `kd_tujuan` (`kd_tujuan`)
+  `harga_jadwal` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -210,7 +194,8 @@ INSERT INTO `tbl_jadwal` (`kd_jadwal`, `kd_bus`, `kd_tujuan`, `kd_asal`, `wilaya
 ('J0004', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-06-30', '01:08:00', '17:08:00', '200000'),
 ('J0005', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-07-18', '13:58:00', '20:58:00', '200000'),
 ('J0006', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-09-13', '11:51:00', '15:51:00', '200000'),
-('J0007', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-10-19', '06:23:00', '13:23:00', '130000');
+('J0007', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-10-19', '06:23:00', '13:23:00', '130000'),
+('J0008', 'B002', 'TJ001', 'TJ002', 'Jogja', '2021-11-29', '12:28:00', '16:28:00', '120000');
 
 -- --------------------------------------------------------
 
@@ -218,17 +203,14 @@ INSERT INTO `tbl_jadwal` (`kd_jadwal`, `kd_bus`, `kd_tujuan`, `kd_asal`, `wilaya
 -- Table structure for table `tbl_konfirmasi`
 --
 
-DROP TABLE IF EXISTS `tbl_konfirmasi`;
-CREATE TABLE IF NOT EXISTS `tbl_konfirmasi` (
+CREATE TABLE `tbl_konfirmasi` (
   `kd_konfirmasi` varchar(50) NOT NULL,
   `kd_order` varchar(50) DEFAULT NULL,
   `nama_konfirmasi` varchar(50) DEFAULT NULL,
   `nama_bank_konfirmasi` varchar(50) DEFAULT NULL,
   `norek_konfirmasi` varchar(50) DEFAULT NULL,
   `total_konfirmasi` varchar(50) DEFAULT NULL,
-  `photo_konfirmasi` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`kd_konfirmasi`),
-  KEY `kode_order` (`kd_order`)
+  `photo_konfirmasi` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -247,7 +229,17 @@ INSERT INTO `tbl_konfirmasi` (`kd_konfirmasi`, `kd_order`, `nama_konfirmasi`, `n
 ('KF0009', 'ORD00007', '', 'Lunas Agen', '', '130000', '/assets/frontend/upload/payment/start27.jpg'),
 ('KF0010', 'ORD00007', '', 'Lunas Agen', '', '130000', '/assets/frontend/upload/payment/start28.jpg'),
 ('KF0011', 'ORD00007', '', 'Lunas Agen', '', '130000', '/assets/frontend/upload/payment/start29.jpg'),
-('KF0012', 'ORD00010', '', 'Lunas Agen', '', '130000', '/assets/frontend/upload/payment/5.jpg');
+('KF0012', 'ORD00010', '', 'Lunas Agen', '', '130000', '/assets/frontend/upload/payment/5.jpg'),
+('KF0013', 'ORD00008', 'Tes2', 'Transfer', '43242322', '130000', '/assets/frontend/upload/payment/3.jpg'),
+('KF0014', 'ORD00013', '', 'Lunas Agen', '', '120000', '/assets/frontend/upload/payment/31.jpg'),
+('KF0015', 'ORD00014', '', 'Lunas Agen', '', '120000', '/assets/frontend/upload/payment/32.jpg'),
+('KF0016', 'ORD00015', '', 'Lunas Agen', '', '120000', '/assets/frontend/upload/payment/33.jpg'),
+('KF0017', 'ORD00019', '', 'Lunas Agen', '', '120000', '/assets/frontend/upload/payment/34.jpg'),
+('KF0018', 'ORD00020', '', 'Lunas Agen', '', '120000', '/assets/frontend/upload/payment/35.jpg'),
+('KF0019', 'ORD00020', '', 'Lunas Agen', '', '120000', '/assets/frontend/upload/payment/36.jpg'),
+('KF0020', 'ORD00021', '', 'Lunas Agen', '', '120000', '/assets/frontend/upload/payment/37.jpg'),
+('KF0021', 'ORD00020', '', 'Bayar Driver', '', '120000', '/assets/frontend/upload/payment/38.jpg'),
+('KF0022', 'ORD00020', '', 'Lunas Agen', '', '120000', '/assets/frontend/upload/payment/39.jpg');
 
 -- --------------------------------------------------------
 
@@ -255,12 +247,10 @@ INSERT INTO `tbl_konfirmasi` (`kd_konfirmasi`, `kd_order`, `nama_konfirmasi`, `n
 -- Table structure for table `tbl_level`
 --
 
-DROP TABLE IF EXISTS `tbl_level`;
-CREATE TABLE IF NOT EXISTS `tbl_level` (
-  `kd_level` int(11) NOT NULL AUTO_INCREMENT,
-  `nama_level` varchar(50) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`kd_level`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+CREATE TABLE `tbl_level` (
+  `kd_level` int(11) NOT NULL,
+  `nama_level` varchar(50) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_level`
@@ -276,12 +266,10 @@ INSERT INTO `tbl_level` (`kd_level`, `nama_level`) VALUES
 -- Table structure for table `tbl_menu`
 --
 
-DROP TABLE IF EXISTS `tbl_menu`;
-CREATE TABLE IF NOT EXISTS `tbl_menu` (
-  `kd_menu` int(11) NOT NULL AUTO_INCREMENT,
-  `nama_menu` varchar(50) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`kd_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+CREATE TABLE `tbl_menu` (
+  `kd_menu` int(11) NOT NULL,
+  `nama_menu` varchar(50) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_menu`
@@ -297,9 +285,8 @@ INSERT INTO `tbl_menu` (`kd_menu`, `nama_menu`) VALUES
 -- Table structure for table `tbl_order`
 --
 
-DROP TABLE IF EXISTS `tbl_order`;
-CREATE TABLE IF NOT EXISTS `tbl_order` (
-  `id_order` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_order` (
+  `id_order` int(11) NOT NULL,
   `kd_order` varchar(50) DEFAULT NULL,
   `kd_tiket` varchar(50) DEFAULT NULL,
   `kd_jadwal` varchar(50) DEFAULT NULL,
@@ -319,13 +306,8 @@ CREATE TABLE IF NOT EXISTS `tbl_order` (
   `email_order` varchar(100) DEFAULT NULL,
   `expired_order` varchar(50) DEFAULT NULL,
   `qrcode_order` varchar(100) DEFAULT NULL,
-  `status_order` varchar(2) DEFAULT NULL,
-  PRIMARY KEY (`id_order`),
-  KEY `kd_jadwal` (`kd_jadwal`),
-  KEY `kd_kustomer` (`kd_pelanggan`),
-  KEY `kd_tiket` (`kd_tiket`),
-  KEY `kd_bank` (`kd_bank`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+  `status_order` varchar(2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_order`
@@ -341,9 +323,18 @@ INSERT INTO `tbl_order` (`id_order`, `kd_order`, `kd_tiket`, `kd_jadwal`, `kd_pe
 (13, 'ORD00009', 'T0009202107033', 'J0001', 'PL0001', 'Lunas Agen', '', 'TJ002', 'Devi Kharisma', 'Sabtu, 03 Juli 2021, 13:42', '2021-07-03', 'C', '87', '3', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '04-07-2021 13:42:52', 'assets/frontend/upload/qrcode/ORD00009.png', '1'),
 (14, 'ORD00009', 'T0009202107034', 'J0001', 'PL0001', 'Lunas Agen', '', 'TJ002', 'Devi Kharisma', 'Sabtu, 03 Juli 2021, 13:42', '2021-07-03', 'D', '87', '4', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '04-07-2021 13:42:52', 'assets/frontend/upload/qrcode/ORD00009.png', '1'),
 (15, 'ORD00010', 'T0010202107035', 'J0001', 'PL0001', 'Transfer', 'AG001', 'TJ002', 'Devi Kharisma', 'Sabtu, 03 Juli 2021, 17:33', '2021-07-03', 'Devi Kharisma', '90', '5', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '04-07-2021 17:33:17', 'assets/frontend/upload/qrcode/ORD00010.png', '1'),
-(16, 'ORD00011', 'T0011202107181', 'J0005', 'PL0001', 'Lunas Agen', '', 'TJ002', 'Devi Kharisma', 'Selasa, 13 Juli 2021, 14:15', '2021-07-18', 'Devi Kharisma', '89', '1', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '14-07-2021 14:15:30', 'assets/frontend/upload/qrcode/ORD00011.png', '1'),
+(16, 'ORD00011', 'T0011202107181', 'J0005', 'PL0001', 'Lunas Agen', '', 'TJ002', 'Devi Kharisma', 'Selasa, 13 Juli 2021, 14:15', '2021-07-18', 'Devi Kharisma', '89', '1', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '14-07-2021 14:15:30', 'assets/frontend/upload/qrcode/ORD00011.png', '2'),
 (17, 'ORD00012', 'T0012202107182', 'J0005', NULL, 'Lunas Agen', '', 'TJ002', 'Ahmad Saifuddin', 'Selasa, 13 Juli 2021, 21:49', '2021-10-18', 'Devi Kharisma', '89', '2', '350708999009922', '085777666555', 'Jl. Simpang Jogja No. 48', 'devi@gmail.com', '14-07-2021 21:49:23', 'assets/frontend/upload/qrcode/ORD00012.png', '1'),
-(18, 'ORD00011', 'T0011202107181', 'J0005', 'PL0001', 'Lunas Agen', '', 'TJ002', 'Devi Kharisma', 'Selasa, 13 Juli 2021, 14:15', '2020-07-18', 'Devi Kharisma', '89', '1', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '14-07-2021 14:15:30', 'assets/frontend/upload/qrcode/ORD00011.png', '1');
+(18, 'ORD00011', 'T0011202107181', 'J0005', 'PL0001', 'Lunas Agen', '', 'TJ002', 'Devi Kharisma', 'Selasa, 13 Juli 2021, 14:15', '2020-07-18', 'Devi Kharisma', '89', '1', '350708999009922', '085755733888', 'Jl Sumbersari Malang', 'devi@gmail.com', '14-07-2021 14:15:30', 'assets/frontend/upload/qrcode/ORD00011.png', '2'),
+(19, 'ORD00013', 'T0013202111291', 'J0008', NULL, 'Lunas Agen', 'AG001', 'TJ002', 'tes', 'Sabtu, 20 November 2021, 10:30', '2021-11-29', 'Tes Nama Penumpang', '16', '1', '350708999009910', '0883828328', 'tes', 'tes@gmail.com', '21-11-2021 10:30:00', 'assets/frontend/upload/qrcode/ORD00013.png', '2'),
+(20, 'ORD00014', 'T0014202111292', 'J0008', NULL, 'Lunas Agen', 'AG001', 'TJ002', 'tes', 'Minggu, 21 November 2021, 19:11', '2021-11-29', 'Tes tiket saya', '87', '2', '350708999009910', '0883828328', 'tes', 'tes@gmail.com', '22-11-2021 19:11:25', 'assets/frontend/upload/qrcode/ORD00014.png', '1'),
+(21, 'ORD00015', 'T0015202111293', 'J0008', NULL, 'Lunas Agen', 'AG001', 'TJ002', 'tes', 'Minggu, 21 November 2021, 19:17', '2021-11-29', 'tes', '88', '3', '350708999009910', '0883828328', 'tes', 'tes@gmail.com', '22-11-2021 19:17:53', 'assets/frontend/upload/qrcode/ORD00015.png', '2'),
+(22, 'ORD00016', 'T0016202111294', 'J0008', NULL, 'Lunas Agen', 'AG002', 'TJ002', 'tes', 'Minggu, 21 November 2021, 19:22', '2021-11-29', 'r', '89', '4', '350708999009910', '0883828328', 'tes', 'tes@gmail.com', '22-11-2021 19:22:07', 'assets/frontend/upload/qrcode/ORD00016.png', '2'),
+(23, 'ORD00017', 'T0017202111297', 'J0008', NULL, 'Lunas Agen', 'AG002', 'TJ002', 'tes', 'Minggu, 21 November 2021, 19:23', '2021-11-29', 'e', '89', '7', '350708999009910', '0883828328', 'tes', 'tes@gmail.com', '22-11-2021 19:23:55', 'assets/frontend/upload/qrcode/ORD00017.png', '2'),
+(24, 'ORD00018', 'T0018202111296', 'J0008', NULL, 'Lunas Agen', 'AG002', 'TJ002', 'tes', 'Minggu, 21 November 2021, 20:02', '2021-11-29', 'w', '89', '6', '350708999009910', '0883828328', 'tes', 'tes@gmail.com', '22-11-2021 20:02:10', 'assets/frontend/upload/qrcode/ORD00018.png', '2'),
+(25, 'ORD00019', 'T0019202111295', 'J0008', NULL, 'Lunas Agen', 'AG001', 'TJ002', 'tes', 'Selasa, 23 November 2021, 13:37', '2021-11-29', 'Ryan', '52', '5', '350708999009910', '0883828328', 'tes', 'tes@gmail.com', '24-11-2021 13:37:29', 'assets/frontend/upload/qrcode/ORD00019.png', '2'),
+(26, 'ORD00020', 'T0020202111298', 'J0008', NULL, 'Lunas Agen', 'AG002', 'TJ002', 'tes', 'Selasa, 23 November 2021, 18:34', '2021-11-29', 'tes bayar agen', '87', '8', '350708999009910', '0883828328', 'tes', 'tes@gmail.com', '24-11-2021 18:34:00', 'assets/frontend/upload/qrcode/ORD00020.png', '2'),
+(27, 'ORD00021', 'T0021202111299', 'J0008', NULL, 'Lunas Agen', 'AG002', 'TJ002', 'tes', 'Selasa, 23 November 2021, 18:44', '2021-11-29', 'Tes konfirmasi agen', '86', '9', '350708999009910', '0883828328', 'tes', 'tes@gmail.com', '24-11-2021 18:44:55', 'assets/frontend/upload/qrcode/ORD00021.png', '2');
 
 -- --------------------------------------------------------
 
@@ -351,8 +342,7 @@ INSERT INTO `tbl_order` (`id_order`, `kd_order`, `kd_tiket`, `kd_jadwal`, `kd_pe
 -- Table structure for table `tbl_pelanggan`
 --
 
-DROP TABLE IF EXISTS `tbl_pelanggan`;
-CREATE TABLE IF NOT EXISTS `tbl_pelanggan` (
+CREATE TABLE `tbl_pelanggan` (
   `kd_pelanggan` varchar(50) COLLATE latin1_general_ci NOT NULL,
   `username_pelanggan` varchar(50) COLLATE latin1_general_ci NOT NULL,
   `password_pelanggan` varchar(200) COLLATE latin1_general_ci NOT NULL,
@@ -363,8 +353,7 @@ CREATE TABLE IF NOT EXISTS `tbl_pelanggan` (
   `telpon_pelanggan` varchar(20) COLLATE latin1_general_ci NOT NULL,
   `img_pelanggan` varchar(200) COLLATE latin1_general_ci NOT NULL,
   `status_pelanggan` int(1) DEFAULT NULL,
-  `date_create_pelanggan` varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
-  PRIMARY KEY (`kd_pelanggan`)
+  `date_create_pelanggan` varchar(50) COLLATE latin1_general_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
@@ -380,8 +369,7 @@ INSERT INTO `tbl_pelanggan` (`kd_pelanggan`, `username_pelanggan`, `password_pel
 -- Table structure for table `tbl_tiket`
 --
 
-DROP TABLE IF EXISTS `tbl_tiket`;
-CREATE TABLE IF NOT EXISTS `tbl_tiket` (
+CREATE TABLE `tbl_tiket` (
   `kd_tiket` varchar(50) NOT NULL,
   `kd_order` varchar(50) DEFAULT NULL,
   `nama_tiket` varchar(50) DEFAULT NULL,
@@ -392,9 +380,7 @@ CREATE TABLE IF NOT EXISTS `tbl_tiket` (
   `etiket_tiket` varchar(100) DEFAULT NULL,
   `status_tiket` varchar(50) NOT NULL,
   `create_tgl_tiket` date DEFAULT NULL,
-  `create_admin_tiket` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`kd_tiket`),
-  KEY `kode_order` (`kd_order`)
+  `create_admin_tiket` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -407,7 +393,16 @@ INSERT INTO `tbl_tiket` (`kd_tiket`, `kd_order`, `nama_tiket`, `kursi_tiket`, `u
 ('T0002202106146', 'ORD00002', 'Devi B', '6', '87 Tahun', 'TJ002', '130000', 'assets/backend/upload/etiket/ORD00002.pdf', '2', '2021-06-28', 'operator'),
 ('T0004202106281', 'ORD00004', 'Devi Kharisma', '1', '89 Tahun', 'TJ002', '130000', 'assets/backend/upload/etiket/ORD00004.pdf', '2', '2021-06-28', 'operator'),
 ('T0004202106283', 'ORD00004', 'Ahmad', '3', '87 Tahun', 'TJ002', '130000', 'assets/backend/upload/etiket/ORD00004.pdf', '2', '2021-06-28', 'operator'),
-('T0005202106281', 'ORD00005', 'Devi A', '1', '86 Tahun', 'TJ002', '200000', 'assets/backend/upload/etiket/ORD00005.pdf', '2', '2021-07-03', 'operator');
+('T0005202106281', 'ORD00005', 'Devi A', '1', '86 Tahun', 'TJ002', '200000', 'assets/backend/upload/etiket/ORD00005.pdf', '2', '2021-07-03', 'operator'),
+('T0011202107181', 'ORD00011', 'Devi Kharisma', '1', '89 Tahun', 'TJ002', '200000', 'assets/backend/upload/etiket/ORD00011.pdf', '2', '2021-11-21', 'operator'),
+('T0013202111291', 'ORD00013', 'Tes Nama Penumpang', '1', '16 Tahun', 'TJ002', '120000', 'assets/backend/upload/etiket/ORD00013.pdf', '2', '2021-11-20', 'operator'),
+('T0015202111293', 'ORD00015', 'tes', '3', '88 Tahun', 'TJ002', '120000', 'assets/backend/upload/etiket/ORD00015.pdf', '2', '2021-11-21', 'operator'),
+('T0016202111294', 'ORD00016', 'r', '4', '89 Tahun', 'TJ002', '120000', 'assets/backend/upload/etiket/ORD00016.pdf', '2', '2021-11-21', 'operator'),
+('T0017202111297', 'ORD00017', 'e', '7', '89 Tahun', 'TJ002', '120000', 'assets/backend/upload/etiket/ORD00017.pdf', '2', '2021-11-21', 'operator'),
+('T0018202111296', 'ORD00018', 'w', '6', '89 Tahun', 'TJ002', '120000', 'assets/backend/upload/etiket/ORD00018.pdf', '2', '2021-11-21', 'operator'),
+('T0019202111295', 'ORD00019', 'Ryan', '5', '52 Tahun', 'TJ002', '120000', 'assets/backend/upload/etiket/ORD00019.pdf', '2', '2021-11-23', 'operator'),
+('T0020202111298', 'ORD00020', 'tes bayar agen', '8', '87 Tahun', 'TJ002', '120000', 'assets/backend/upload/etiket/ORD00020.pdf', '2', '2021-11-23', 'operator'),
+('T0021202111299', 'ORD00021', 'Tes konfirmasi agen', '9', '86 Tahun', 'TJ002', '120000', 'assets/backend/upload/etiket/ORD00021.pdf', '2', '2021-11-23', 'operator');
 
 -- --------------------------------------------------------
 
@@ -415,11 +410,9 @@ INSERT INTO `tbl_tiket` (`kd_tiket`, `kd_order`, `nama_tiket`, `kursi_tiket`, `u
 -- Table structure for table `tbl_tujuan`
 --
 
-DROP TABLE IF EXISTS `tbl_tujuan`;
-CREATE TABLE IF NOT EXISTS `tbl_tujuan` (
+CREATE TABLE `tbl_tujuan` (
   `kd_tujuan` varchar(50) NOT NULL,
-  `kota_tujuan` varchar(50) NOT NULL,
-  PRIMARY KEY (`kd_tujuan`)
+  `kota_tujuan` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -429,6 +422,118 @@ CREATE TABLE IF NOT EXISTS `tbl_tujuan` (
 INSERT INTO `tbl_tujuan` (`kd_tujuan`, `kota_tujuan`) VALUES
 ('TJ001', 'Jogja'),
 ('TJ002', 'Malang');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tbl_admin`
+--
+ALTER TABLE `tbl_admin`
+  ADD PRIMARY KEY (`kd_admin`);
+
+--
+-- Indexes for table `tbl_agen`
+--
+ALTER TABLE `tbl_agen`
+  ADD PRIMARY KEY (`kd_agen`);
+
+--
+-- Indexes for table `tbl_agens`
+--
+ALTER TABLE `tbl_agens`
+  ADD PRIMARY KEY (`kd_agen`);
+
+--
+-- Indexes for table `tbl_bank`
+--
+ALTER TABLE `tbl_bank`
+  ADD PRIMARY KEY (`kd_bank`);
+
+--
+-- Indexes for table `tbl_bus`
+--
+ALTER TABLE `tbl_bus`
+  ADD PRIMARY KEY (`kd_bus`);
+
+--
+-- Indexes for table `tbl_jadwal`
+--
+ALTER TABLE `tbl_jadwal`
+  ADD PRIMARY KEY (`kd_jadwal`),
+  ADD KEY `kd_bus` (`kd_bus`),
+  ADD KEY `kd_tujuan` (`kd_tujuan`);
+
+--
+-- Indexes for table `tbl_konfirmasi`
+--
+ALTER TABLE `tbl_konfirmasi`
+  ADD PRIMARY KEY (`kd_konfirmasi`),
+  ADD KEY `kode_order` (`kd_order`);
+
+--
+-- Indexes for table `tbl_level`
+--
+ALTER TABLE `tbl_level`
+  ADD PRIMARY KEY (`kd_level`);
+
+--
+-- Indexes for table `tbl_menu`
+--
+ALTER TABLE `tbl_menu`
+  ADD PRIMARY KEY (`kd_menu`);
+
+--
+-- Indexes for table `tbl_order`
+--
+ALTER TABLE `tbl_order`
+  ADD PRIMARY KEY (`id_order`),
+  ADD KEY `kd_jadwal` (`kd_jadwal`),
+  ADD KEY `kd_kustomer` (`kd_pelanggan`),
+  ADD KEY `kd_tiket` (`kd_tiket`),
+  ADD KEY `kd_bank` (`kd_bank`);
+
+--
+-- Indexes for table `tbl_pelanggan`
+--
+ALTER TABLE `tbl_pelanggan`
+  ADD PRIMARY KEY (`kd_pelanggan`);
+
+--
+-- Indexes for table `tbl_tiket`
+--
+ALTER TABLE `tbl_tiket`
+  ADD PRIMARY KEY (`kd_tiket`),
+  ADD KEY `kode_order` (`kd_order`);
+
+--
+-- Indexes for table `tbl_tujuan`
+--
+ALTER TABLE `tbl_tujuan`
+  ADD PRIMARY KEY (`kd_tujuan`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tbl_level`
+--
+ALTER TABLE `tbl_level`
+  MODIFY `kd_level` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbl_menu`
+--
+ALTER TABLE `tbl_menu`
+  MODIFY `kd_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbl_order`
+--
+ALTER TABLE `tbl_order`
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
