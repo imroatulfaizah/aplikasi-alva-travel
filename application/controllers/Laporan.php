@@ -12,11 +12,12 @@ class Laporan extends CI_Controller {
 		if($cut == "AG"){
 			// echo $kode;
 			// echo "yes";
-			$data['tiket'] = $this->db->query("SELECT a.*, b.*, sum(CAST(harga_tiket AS UNSIGNED)) as total FROM tbl_tiket a inner join tbl_order b on a.kd_tiket = b.kd_tiket WHERE b.kd_agen = 'AG001' ORDER BY a.kd_order ASC")->result_array();
+			$data['jumlah'] = $this->db->query("SELECT sum(CAST(a.harga_tiket AS UNSIGNED)) as total FROM tbl_tiket a inner join tbl_order b on a.kd_order = b.kd_order WHERE b.kd_agen = '$kode'")->result_array();
+			$data['tiket'] = $this->db->query("SELECT a.*, b.* FROM tbl_tiket a inner join tbl_order b on a.kd_tiket = b.kd_tiket WHERE b.kd_agen = '$kode'")->result_array();
 		}else{
 			// echo "no";
 			// echo $id;
-			$data['tiket'] = $this->db->query("SELECT a.*, b.* FROM tbl_tiket a inner join tbl_order b on a.kd_tiket = b.kd_tiket WHERE b.kd_agen = 'AG001' ORDER BY a.kd_order ASC")->result_array();
+			$data['tiket'] = $this->db->query("SELECT a.*, b.*, sum(CAST(harga_tiket AS UNSIGNED)) as total FROM tbl_tiket a inner join tbl_order b on a.kd_tiket = b.kd_tiket WHERE b.kd_agen = '$kode' ORDER BY a.kd_order ASC")->result_array();
 		}		
 		//die(print_r($data));
 		//die();

@@ -25,7 +25,7 @@
 		color: white;}
 		
 		</style>
-		<style>
+		<!-- <style>
 			* {box-sizing: border-box}
 			body {font-family: Verdana, sans-serif; margin:0}
 			.mySlides {display: none}
@@ -123,10 +123,10 @@
 			@media only screen and (max-width: 300px) {
 			.prev, .next,.text {font-size: 11px}
 			}
-			</style>
+		</style> -->
 	</head>
 	<body>
-	<div class="slideshow-container fullscreen">
+	<!-- <div class="slideshow-container fullscreen">
 	<section class="banner-area relative section-gap relative" id="home">
 			<div class="container">
 				<div class="row fullscreen d-flex align-items-center justify-content-end">
@@ -135,7 +135,7 @@
 						ALVA TRAVEL<br>
 						Resmi, Murah, Mudah, dan Nyaman.<br><br>				
 							</h2>
-						<a href="<?php echo base_url() ?>tiket" class="primary-btn header-btn text-uppercase">Cari & Pesan Tiket</a>
+						<a href="<php echo base_url() ?>tiket" class="primary-btn header-btn text-uppercase">Cari & Pesan Tiket</a>
 					</div>
 				</div>
 			</div>
@@ -168,7 +168,7 @@
 		<span class="dot" onclick="currentSlide(1)"></span> 
 		<span class="dot" onclick="currentSlide(2)"></span> 
 		<span class="dot" onclick="currentSlide(3)"></span> 
-		</div>
+		</div> -->
 
 		<?php $this->load->view('frontend/include/base_css'); ?>
 		<!-- navbar -->

@@ -55,10 +55,6 @@
 										<label for="exampleInputEmail1">Pembayaran Kamu</label>
 										<select class="form-control" name="bank_km" id="bank_km">
 											<option value="" selected disabled="">Pilih Pembayaran</option>
-											<!-- <option value="BCA" >BCA</option>
-											<option value="Mandiri">Mandiri</option>
-											<option value="BNI">BNI</option>
-											<option value="BRI">BRI</option> -->
 											<?php
 												if($cut == "AG"){ ?>
 													<option value="Lunas Agen">Lunas Agen</option>
@@ -71,14 +67,26 @@
 											
 										</select>
 									</div>
-									<div class="form-group" id="id_agen" style="display:none;" required>
+									<!-- <div class="form-group" id="id_agen" style="display:none;" required>
 										<label for="exampleInputEmail1">Agen</label>
 										<select class="form-control" name="agen">
 											<option value="" selected disabled="">Pilih Agen</option>
-											<?php foreach ($agen as $row) { ?>
-											<option value="<?php echo $row['kd_agen'] ?>"><?php echo $row['nama_agen']; ?></option>
-											<?php } ?>
+											<php foreach ($agen as $row) { ?>
+											<option value="<php echo $row['kd_agen'] ?>"><php echo $row['nama_agen']; ?></option>
+											<php } ?>
 										</select>
+									</div> -->
+									<!-- <div class="form-group" id="id_bayar">
+										<label for="exampleInputEmail1">METODE PEMBAYARAN</label>
+										<input type="text" class="form-control" name="id_bayar" value="<php 
+										foreach($order as $row){
+											echo $row['kd_bank'];
+										}
+										?>" readonly>
+									</div> -->
+									<div class="form-group" id="id_agen" style="display:none;">
+										<label for="exampleInputEmail1">AGEN</label>
+										<input type="text" class="form-control" name="id_agen" value="<?php echo $this->session->userdata('kd_agen'); ?>" readonly>
 									</div>
 									<div class="form-group" id="id_norek" style="display:none;">
 										<label for="exampleInputEmail1">Nomor Rekening</label>

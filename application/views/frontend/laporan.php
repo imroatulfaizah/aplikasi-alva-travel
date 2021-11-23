@@ -37,28 +37,43 @@
                 <thead>
                     <tr>
                         <th style="text-align:center;width:50px;">Kode Order</th>
+						<th style="text-align:center;width:50px;">Kode TIket</th>
                         <th>Nama Pembeli</th>
                         <th>Tanggal Keberangkatan</th>
                         <th>Harga Tiket</th>
+						<!-- <th>Action</th> -->
                     </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($tiket as $value) { ?>
                     <tr>
                         <td style="text-align:center;vertical-align:middle"><?php echo strtoupper($value['kd_order']) ?></td>
-                        <td style="vertical-align:middle;"><?php echo $value['nama_tiket'] ?></td>
+                        <td style="text-align:center;vertical-align:middle"><?php echo $value['kd_tiket'] ?></td>
+						<td style="vertical-align:middle;"><?php echo $value['nama_tiket'] ?></td>
                         <td style="vertical-align:middle;"><?php echo $value['tgl_berangkat_order'] ?></td>
                         <td style="vertical-align:middle;"><?php echo $value['harga_tiket'] ?></td>
-                        
+                        <!-- <td><a href="<php echo base_url('tiket/sendpayment/'.$value['kd_order']) ?>" class="btn btn-primary">Send Payment</a></td> -->
                     </tr>
                  <?php } ?>
                     <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+						<th></th>
                     </tr>
                     <tr>
                         <th></th>
                         <th></th>
+						<th></th>
                         <th>Total</th>
-                        <td style="vertical-align:middle;"><?php echo $value['total'] ?></td>
+						<?php
+						//var_dump($jumlah);
+							foreach($jumlah as $item){ ?>
+							<td style="vertical-align:middle;"><?php echo $item['total'] ?></td>
+							<?php }
+						?>
+                        
                     </tr>
                 </tbody>
             </table>

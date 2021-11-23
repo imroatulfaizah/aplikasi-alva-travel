@@ -175,6 +175,7 @@ class Tiket extends CI_Controller {
 	public function konfirmasi($value='',$harga=''){
 		$this->getsecurity();
 		// die(print_r($value));
+		$data['order'] = $this->db->query("SELECT * FROM `tbl_order` WHERE kd_order = '$value'")->result_array();
 		$data['agen'] = $this->db->query("SELECT * FROM `tbl_agen` ")->result_array();
 		$data['id'] = $value;
 		$data['total'] = $harga;
@@ -211,7 +212,7 @@ class Tiket extends CI_Controller {
 			// );
 			$where = array('kd_order' => $this->input->post('kd_order') );
 			$update = array(
-				'kd_agen' =>  $this->input->post('agen')
+				'kd_agen' =>  $this->input->post('id_agen')
 				);
 			$this->db->update('tbl_order', $update,$where);
 			$this->session->set_flashdata('message', 'swal("Berhasil", "Terima Kasih Atas Konfirmasinya", "success");');
