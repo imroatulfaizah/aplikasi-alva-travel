@@ -50,7 +50,9 @@
 										// }else{
 										// 	echo "no";
 										// }
-										// ?>
+										//
+										// 
+										?>
 									<div class="form-group">
 										<label for="exampleInputEmail1">Pembayaran Kamu</label>
 										<select class="form-control" name="bank_km" id="bank_km">
@@ -62,9 +64,7 @@
 													<option value="Transfer">Transfer</option>
 												<?php }
 											?>
-											
 											<option value="Bayar Driver">Bayar Driver</option>
-											
 										</select>
 									</div>
 									<!-- <div class="form-group" id="id_agen" style="display:none;" required>
