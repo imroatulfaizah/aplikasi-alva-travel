@@ -44,6 +44,9 @@
         <a class="nav-link" href="<?php echo base_url() ?>backend/konfirmasi">
           <i class="fa fa-mouse-pointer"></i>
           <span>List Konfirmasi</span></a>
+          <a class="nav-link" href="<?php echo base_url() ?>backend/keuangan">
+          <i class="fas fa-money-check"></i>
+          <span>Laporan Keuangan</span></a>
         <?php if ($this->session->userdata('level') == '1') { ?>
            <a class="nav-link" href="<?php echo base_url() ?>backend/bank">
           <i class="fas fa fa-link"></i>
