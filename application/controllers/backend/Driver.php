@@ -36,7 +36,8 @@ class Driver extends CI_Controller {
 	public function editstatus($id=''){
 		$kode = (trim(html_escape($this->input->post('kode'))));
 		$where = array('kd_driver' => $kode );
-		$update = array('status_driver' =>  $this->input->post('status'));
+		$update = array('alamat_driver' =>  $this->input->post('alamat'),
+		'hp_driver' =>  $this->input->post('telp'), 'status_driver' =>  $this->input->post('status'));
 		$this->db->update('tbl_driver', $update,$where);
 		$this->session->set_flashdata('message', 'swal("Berhasil", "Data Di Edit", "success");');
 		redirect('backend/driver/');

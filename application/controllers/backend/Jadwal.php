@@ -19,10 +19,38 @@ class Jadwal extends CI_Controller {
 	}
 	public function index(){
 		$data['title'] = "List Tujuan";
-		$data['jadwal'] = $this->db->query("SELECT * FROM tbl_jadwal LEFT JOIN tbl_bus 
-		on tbl_jadwal.kd_bus = tbl_bus.kd_bus LEFT JOIN tbl_tujuan 
-		on tbl_jadwal.kd_asal = tbl_tujuan.kd_tujuan 
-		WHERE month(tanggal)=month(now())")->result_array();
+		// $data['jadwal'] = $this->db->query("SELECT * FROM tbl_jadwal LEFT JOIN tbl_bus 
+		// on tbl_jadwal.kd_bus = tbl_bus.kd_bus LEFT JOIN tbl_tujuan 
+		// on tbl_jadwal.kd_asal = tbl_tujuan.kd_tujuan 
+		// WHERE month(tanggal)=month(now())")->result_array();
+		$filter = $this->input->post('filter');
+		if($filter!=null){
+			//var_dump("tes");
+			if($filter=="minggu"){
+				//var_dump("tes1");
+				// $data['order'] = $this->db->query("SELECT * FROM tbl_order
+				// where tgl_berangkat_order> now() -  interval 7 day")->result_array();
+				$data['jadwal'] = $this->db->query("SELECT * FROM tbl_jadwal LEFT JOIN tbl_bus 
+				on tbl_jadwal.kd_bus = tbl_bus.kd_bus LEFT JOIN tbl_tujuan 
+				on tbl_jadwal.kd_asal = tbl_tujuan.kd_tujuan 
+				WHERE tanggal> now() -  interval 7 day")->result_array();
+			}else if($filter=="bulan"){
+				$data['jadwal'] = $this->db->query("SELECT * FROM tbl_jadwal LEFT JOIN tbl_bus 
+				on tbl_jadwal.kd_bus = tbl_bus.kd_bus LEFT JOIN tbl_tujuan 
+				on tbl_jadwal.kd_asal = tbl_tujuan.kd_tujuan 
+				WHERE month(tanggal)=month(now())")->result_array();
+			}else{
+				$data['jadwal'] = $this->db->query("SELECT * FROM tbl_jadwal LEFT JOIN tbl_bus 
+				on tbl_jadwal.kd_bus = tbl_bus.kd_bus LEFT JOIN tbl_tujuan 
+				on tbl_jadwal.kd_asal = tbl_tujuan.kd_tujuan 
+				WHERE tanggal BETWEEN CURDATE() - INTERVAL 1 YEAR AND CURDATE()")->result_array();
+			}
+		}else{
+			$data['jadwal'] = $this->db->query("SELECT * FROM tbl_jadwal LEFT JOIN tbl_bus 
+				on tbl_jadwal.kd_bus = tbl_bus.kd_bus LEFT JOIN tbl_tujuan 
+				on tbl_jadwal.kd_asal = tbl_tujuan.kd_tujuan")->result_array();
+		}
+
 		$this->load->view('backend/jadwal', $data);
 	}
 	public function viewtambahjadwal($value=''){

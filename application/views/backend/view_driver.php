@@ -183,6 +183,14 @@ span.onclick = function() {
 									<div class="card-body">
 										<div class="row">
 											<div class="col-sm-14">
+                      <div class="row form-group">
+													<label for="telp" class="control-label">Masukkan No. Telp Baru</label>
+													<input type="text" class="form-control" name="telp" value="<?php echo $driver['hp_driver']?>" >
+												</div>
+                        <div class="row form-group">
+													<label for="alamat" class="control-label">Masukkan Alamat Baru</label>
+													<input type="text" class="form-control" name="alamat" value="<?php echo $driver['alamat_driver']?>" >
+												</div>
                         <div class="row form-group">
                         <input type="hidden" name="kode" value="<?php echo $driver['kd_driver']?>">
 													<label for="nama" class="control-label">Masukkan Status Baru</label>
