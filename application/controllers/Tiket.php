@@ -176,7 +176,7 @@ class Tiket extends CI_Controller {
 		$this->getsecurity();
 		// die(print_r($value));
 		$data['order'] = $this->db->query("SELECT * FROM `tbl_order` WHERE kd_order = '$value'")->result_array();
-		$data['agen'] = $this->db->query("SELECT * FROM `tbl_agen` ")->result_array();
+		$data['agen'] = $this->db->query("SELECT * FROM `tbl_agens` ")->result_array();
 		$data['id'] = $value;
 		$data['total'] = $harga;
 		$this->load->view('frontend/konfirmasi', $data);

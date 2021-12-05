@@ -40,4 +40,14 @@ class agen extends CI_Controller {
 		redirect('backend/agen');
 	}
 
+	public function editstatus($id=''){
+		$kode = (trim(html_escape($this->input->post('kode'))));
+		$where = array('kd_agen' => $kode );
+		$update = array('alamat_agen' => $this->input->post('alamat'),'hp_agen' => $this->input->post('telp'),
+		'status_agen' =>  $this->input->post('status'));
+		$this->db->update('tbl_agens', $update,$where);
+		$this->session->set_flashdata('message', 'swal("Berhasil", "Data Di Edit", "success");');
+		redirect('backend/agen/');
+	}
+
 }

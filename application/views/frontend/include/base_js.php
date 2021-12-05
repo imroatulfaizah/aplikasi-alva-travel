@@ -21,11 +21,12 @@
 <?php echo "<script>".$this->session->flashdata('message')."</script>"?>
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
+  
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
 s1.async=true;
-s1.src='https://embed.tawk.to/5c78e8c23341d22d9ce6c142/default';
+s1.src='https://wa.web/+6285235562338';
 s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
@@ -36,6 +37,10 @@ s0.parentNode.insertBefore(s1,s0);
       $(".preloader").fadeOut();
     })
   </script>
-
+<div style="position:fixed;right:20px;bottom:40px;">
+<a href="https://api.whatsapp.com/send?phone=+6285235562338&text=Halo, Saya ingin memesan tiket di Alva travel">
+<button style="background:#32C03C;vertical-align:center;height:45px;border-radius:5px">
+<img src="assets/img/wa.png"> Whatsapp Kami</button></a>
+</div>
 
 <!--End of Tawk.to Script-->

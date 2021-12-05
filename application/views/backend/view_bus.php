@@ -183,6 +183,14 @@ span.onclick = function() {
 									<div class="card-body">
 										<div class="row">
 											<div class="col-sm-14">
+                      <div class="row form-group">
+													<label for="plat" class="control-label">Masukkan Plat Armada Baru</label>
+													<input type="text" class="form-control" name="plat" value="<?php echo $bus['plat_bus']?>" >
+												</div>
+                        <div class="row form-group">
+													<label for="kapasitas" class="control-label">Masukkan Kapasitas Baru</label>
+													<input type="text" class="form-control" name="kapasitas" value="<?php echo $bus['kapasitas_bus']?>" >
+												</div>
                         <div class="row form-group">
 													<label for="nama" class="control-label">Masukkan Status Baru</label>
                           <select class="form-control" name="status" required>
