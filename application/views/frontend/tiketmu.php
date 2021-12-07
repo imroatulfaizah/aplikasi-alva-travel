@@ -45,7 +45,9 @@
 								<a href="<?php echo base_url().$row['qrcode_order'] ?>" class="card-link" download>Download QrCode</a>
 								<h5 class="card-title">Kode Order : <?php echo $row['kd_order']; ?></h5>
 								<p>Nama : <?php echo $row['nama_order']; ?>
-								 <br>Tanggal Pesan : <?php echo $row['tgl_beli_order']; ?></br>
+								 <br>Tanggal Pesan : <?php echo $row['tgl_beli_order']; ?>
+								 <br>Asal : <?php echo $row['asal']; ?>
+								 <br>Tujuan : <?php echo $row['tujuan']; ?></br>
 									Status Pembayaran : <?php if ($row['status_order'] == '1') { ?>
 									<i class='btn-danger'>Tunggu Verifikasi Admin</i>
 									<?php }else{ ?><i class='btn-success'>Lunas bayar</i>

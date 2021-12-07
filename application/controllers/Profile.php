@@ -57,11 +57,13 @@ class Profile extends CI_Controller {
 		if($cut == "AG"){
 			// echo $kode;
 			// echo "yes";
-			$data['tiket'] = $this->db->query("SELECT * FROM tbl_order WHERE kd_agen ='".$kode."' group by kd_order")->result_array();
+			$data['tiket'] = $this->db->query("SELECT a.*, b.*, c.*, a.kd_tujuan, c.kota_tujuan as asal, c.kota_tujuan as tujuan FROM `tbl_jadwal` a inner join tbl_order b on a.kd_jadwal = b.kd_jadwal inner join tbl_tujuan c on a.kd_asal = c.kd_tujuan || a.kd_tujuan = c.kd_tujuan
+			WHERE kd_agen ='".$kode."' group by kd_order")->result_array();
 		}else{
 			// echo "no";
 			// echo $id;
-			$data['tiket'] = $this->db->query("SELECT * FROM tbl_order WHERE kd_pelanggan ='".$id."' group by kd_order")->result_array();
+			$data['tiket'] = $this->db->query("SELECT * FROM tbl_order 
+			WHERE kd_pelanggan ='".$id."' group by kd_order")->result_array();
 		}		
 		//die(print_r($data));
 		//die();
