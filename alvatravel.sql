@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2021 at 02:12 PM
+-- Generation Time: Dec 07, 2021 at 07:08 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -50,27 +50,6 @@ INSERT INTO `tbl_admin` (`kd_admin`, `nama_admin`, `username_admin`, `password_a
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_agen`
---
-
-CREATE TABLE `tbl_agen` (
-  `kd_agen` varchar(50) NOT NULL,
-  `nama_agen` varchar(150) NOT NULL,
-  `alamat_agen` varchar(200) NOT NULL,
-  `hp_agen` varchar(50) NOT NULL,
-  `status_agen` int(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_agen`
---
-
-INSERT INTO `tbl_agen` (`kd_agen`, `nama_agen`, `alamat_agen`, `hp_agen`, `status_agen`) VALUES
-('AG001', 'Ahmad Saifuddin', 'Jl. Simpang Jogja No. 48', '085735626777', 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_agens`
 --
 
@@ -93,8 +72,8 @@ CREATE TABLE `tbl_agens` (
 --
 
 INSERT INTO `tbl_agens` (`kd_agen`, `username_agen`, `password_agen`, `no_ktp_agen`, `nama_agen`, `alamat_agen`, `email_agen`, `hp_agen`, `img_agen`, `status_agen`, `date_create_agen`) VALUES
-('AG001', 'agen01', '$2y$10$dVZ8spZkicGE6N9aSZdZpe7u6SvZlYcMlr4z4riDmUVsJo7v1lH7m', '350708999009922', 'Ahmad Saifuddin', 'Jl. Simpang Jogja No. 48', 'devi@gmail.com', '085735626777', 'assets/frontend/img/default.png', 1, '1622368947'),
-('AG002', 'testes', '$2y$10$fKavpZMDn.0t2eiDVSssEuBEZbQY6zXNOfVqMNGWdbQAqODdmxzVy', '350708999009910', 'tes', 'tes', 'tes@gmail.com', '085777666555', 'assets/frontend/img/default.png', 1, '1626181704'),
+('AG001', 'agen01', '$2y$10$dVZ8spZkicGE6N9aSZdZpe7u6SvZlYcMlr4z4riDmUVsJo7v1lH7m', '350708999009922', 'Ahmad Saifuddin', 'Jl. Simpang Jogja No. 49', 'devi@gmail.com', '085735626778', 'assets/frontend/img/default.png', 1, '1622368947'),
+('AG002', 'testes', '$2y$10$fKavpZMDn.0t2eiDVSssEuBEZbQY6zXNOfVqMNGWdbQAqODdmxzVy', '350708999009910', 'tes', 'Jl. Kepuh No. 48', 'tes@gmail.com', '085777666888', 'assets/frontend/img/default.png', 1, '1626181704'),
 ('AG003', NULL, NULL, NULL, 'Agen A', 'tes', NULL, '09271717271', NULL, 1, NULL);
 
 -- --------------------------------------------------------
@@ -141,7 +120,7 @@ CREATE TABLE `tbl_bus` (
 --
 
 INSERT INTO `tbl_bus` (`kd_bus`, `nama_bus`, `plat_bus`, `kapasitas_bus`, `status_bus`, `desc_bus`) VALUES
-('B001', 'Elf 1', 'N 1265 FF', 10, 0, NULL),
+('B001', 'Elf 1', 'N 1265 FS', 11, 1, NULL),
 ('B002', 'ELF 2', 'N 1265 FF', 10, 1, NULL);
 
 -- --------------------------------------------------------
@@ -163,7 +142,7 @@ CREATE TABLE `tbl_driver` (
 --
 
 INSERT INTO `tbl_driver` (`kd_driver`, `nama_driver`, `alamat_driver`, `hp_driver`, `status_driver`) VALUES
-('D001', 'tes', 'tes', 'tes', 2);
+('D001', 'tes', 'jl. Cadas', '08573562111', 1);
 
 -- --------------------------------------------------------
 
@@ -195,7 +174,9 @@ INSERT INTO `tbl_jadwal` (`kd_jadwal`, `kd_bus`, `kd_tujuan`, `kd_asal`, `wilaya
 ('J0005', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-07-18', '13:58:00', '20:58:00', '200000'),
 ('J0006', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-09-13', '11:51:00', '15:51:00', '200000'),
 ('J0007', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-10-19', '06:23:00', '13:23:00', '130000'),
-('J0008', 'B002', 'TJ001', 'TJ002', 'Jogja', '2021-11-29', '12:28:00', '16:28:00', '120000');
+('J0008', 'B002', 'TJ001', 'TJ002', 'Jogja', '2021-11-29', '12:28:00', '16:28:00', '120000'),
+('J0009', 'B002', 'TJ001', 'TJ002', 'Jogja', '2021-12-16', '17:56:00', '15:57:00', '130000'),
+('J0010', 'B001', 'TJ001', 'TJ002', 'Jogja', '2021-12-20', '21:11:00', '16:11:00', '130000');
 
 -- --------------------------------------------------------
 
@@ -239,7 +220,8 @@ INSERT INTO `tbl_konfirmasi` (`kd_konfirmasi`, `kd_order`, `nama_konfirmasi`, `n
 ('KF0019', 'ORD00020', '', 'Lunas Agen', '', '120000', '/assets/frontend/upload/payment/36.jpg'),
 ('KF0020', 'ORD00021', '', 'Lunas Agen', '', '120000', '/assets/frontend/upload/payment/37.jpg'),
 ('KF0021', 'ORD00020', '', 'Bayar Driver', '', '120000', '/assets/frontend/upload/payment/38.jpg'),
-('KF0022', 'ORD00020', '', 'Lunas Agen', '', '120000', '/assets/frontend/upload/payment/39.jpg');
+('KF0022', 'ORD00020', '', 'Lunas Agen', '', '120000', '/assets/frontend/upload/payment/39.jpg'),
+('KF0023', 'ORD00023', '', 'Bayar Driver', '', '130000', '/assets/frontend/upload/payment/310.jpg');
 
 -- --------------------------------------------------------
 
@@ -334,7 +316,9 @@ INSERT INTO `tbl_order` (`id_order`, `kd_order`, `kd_tiket`, `kd_jadwal`, `kd_pe
 (24, 'ORD00018', 'T0018202111296', 'J0008', NULL, 'Lunas Agen', 'AG002', 'TJ002', 'tes', 'Minggu, 21 November 2021, 20:02', '2021-11-29', 'w', '89', '6', '350708999009910', '0883828328', 'tes', 'tes@gmail.com', '22-11-2021 20:02:10', 'assets/frontend/upload/qrcode/ORD00018.png', '2'),
 (25, 'ORD00019', 'T0019202111295', 'J0008', NULL, 'Lunas Agen', 'AG001', 'TJ002', 'tes', 'Selasa, 23 November 2021, 13:37', '2021-11-29', 'Ryan', '52', '5', '350708999009910', '0883828328', 'tes', 'tes@gmail.com', '24-11-2021 13:37:29', 'assets/frontend/upload/qrcode/ORD00019.png', '2'),
 (26, 'ORD00020', 'T0020202111298', 'J0008', NULL, 'Lunas Agen', 'AG002', 'TJ002', 'tes', 'Selasa, 23 November 2021, 18:34', '2021-11-29', 'tes bayar agen', '87', '8', '350708999009910', '0883828328', 'tes', 'tes@gmail.com', '24-11-2021 18:34:00', 'assets/frontend/upload/qrcode/ORD00020.png', '2'),
-(27, 'ORD00021', 'T0021202111299', 'J0008', NULL, 'Lunas Agen', 'AG002', 'TJ002', 'tes', 'Selasa, 23 November 2021, 18:44', '2021-11-29', 'Tes konfirmasi agen', '86', '9', '350708999009910', '0883828328', 'tes', 'tes@gmail.com', '24-11-2021 18:44:55', 'assets/frontend/upload/qrcode/ORD00021.png', '2');
+(27, 'ORD00021', 'T0021202111299', 'J0008', NULL, 'Lunas Agen', 'AG002', 'TJ002', 'tes', 'Selasa, 23 November 2021, 18:44', '2021-11-29', 'Tes konfirmasi agen', '86', '9', '350708999009910', '0883828328', 'tes', 'tes@gmail.com', '24-11-2021 18:44:55', 'assets/frontend/upload/qrcode/ORD00021.png', '2'),
+(28, 'ORD00022', 'T0022202112161', 'J0009', NULL, 'Bayar Driver', 'AG002', 'TJ002', 'tes', 'Minggu, 05 Desember 2021, 16:58', '2021-12-16', 'Irfan H', '27', '1', '350708999009910', '0883828328', 'tes', 'tes@gmail.com', '06-12-2021 16:58:30', 'assets/frontend/upload/qrcode/ORD00022.png', '1'),
+(29, 'ORD00023', 'T0023202112201', 'J0010', NULL, 'Bayar Driver', 'AG002', 'TJ002', 'tes', 'Rabu, 08 Desember 2021, 01:00', '2021-12-20', 'Tes tiket saya', '89', '1', '350708999009910', '0883828328', 'Jl. Kepuh No. 48', 'tes@gmail.com', '09-12-2021 01:00:46', 'assets/frontend/upload/qrcode/ORD00023.png', '1');
 
 -- --------------------------------------------------------
 
@@ -434,12 +418,6 @@ ALTER TABLE `tbl_admin`
   ADD PRIMARY KEY (`kd_admin`);
 
 --
--- Indexes for table `tbl_agen`
---
-ALTER TABLE `tbl_agen`
-  ADD PRIMARY KEY (`kd_agen`);
-
---
 -- Indexes for table `tbl_agens`
 --
 ALTER TABLE `tbl_agens`
@@ -533,7 +511,7 @@ ALTER TABLE `tbl_menu`
 -- AUTO_INCREMENT for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
